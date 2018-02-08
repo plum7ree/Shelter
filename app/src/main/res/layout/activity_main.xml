@@ -30,6 +30,7 @@
             android:layout_alignBottom="@+id/register_button"
             android:layout_alignEnd="@+id/textView"
             android:layout_marginBottom="103dp"
+            android:onClick="login"
             android:text="Log In" />
 
         <Button
@@ -39,7 +40,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/login_button"
             android:layout_marginBottom="158dp"
-            android:text="Sign Up" />
+            android:onClick="register"
+            android:text="Register" />
 
     </RelativeLayout>
 
