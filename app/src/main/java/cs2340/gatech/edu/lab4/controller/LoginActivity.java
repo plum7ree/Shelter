@@ -1,31 +1,41 @@
 package cs2340.gatech.edu.lab4.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.User;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText usernameField;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        usernameField = (EditText) findViewById(R.id.username_field);
+        password = (EditText) findViewById(R.id.password_field);
+    }
+
+    public void onLoginPressed(View view) {
+        if(User.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
+            Intent intent = new Intent(getBaseContext(), AfterLoginActivity.class);
+            startActivity(intent);
+        } else {
+            Snackbar.make(view, "Invalid username or password. Please try again.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    }
+
+    public void onCancelPressed(View view) {
+        finish();
     }
 
 }
