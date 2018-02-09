@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import cs2340.gatech.edu.lab4.R;
-import cs2340.gatech.edu.lab4.model.User;
+import cs2340.gatech.edu.lab4.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameField;
     private EditText password;
+
+    public static final String ARG_USER_ID = "user_id";
+    public static final String ARG_PASSWORD_ID = "password_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        if(User.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
+        if(Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
             Intent intent = new Intent(getBaseContext(), AfterLoginActivity.class);
+            intent.putExtra(ARG_USER_ID,usernameField.getText().toString());
             startActivity(intent);
         } else {
             Snackbar.make(view, "Invalid username or password. Please try again.", Snackbar.LENGTH_LONG)
