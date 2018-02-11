@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameField;
     private EditText password;
+    Model model = Model.getInstance();
 
     public static final String ARG_USER_ID = "user_id";
     public static final String ARG_PASSWORD_ID = "password_id";
@@ -28,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        if(Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
+        if(model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
             Intent intent = new Intent(getBaseContext(), AfterLoginActivity.class);
             intent.putExtra(ARG_USER_ID,usernameField.getText().toString());
             startActivity(intent);
