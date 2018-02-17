@@ -96,5 +96,22 @@
             android:layout_alignParentEnd="true"
             android:onClick="onCancelPressed"
             android:text="Cancel" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/username_field"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="25dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/spinner"
+            android:layout_alignParentStart="true"
+            android:text="Select Account Type" />
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
