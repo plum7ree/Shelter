@@ -32,6 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.AfterLoginActivity" />
         <activity android:name=".controller.ShelterListActivity"></activity>
+        <activity android:name=".controller.ShelterDetailActivity"></activity>
     </application>
 
 </manifest>

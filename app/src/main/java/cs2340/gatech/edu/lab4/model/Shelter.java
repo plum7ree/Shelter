@@ -1,5 +1,8 @@
 package cs2340.gatech.edu.lab4.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mike on 2/21/18.
  */
@@ -33,6 +36,10 @@ public class Shelter {
     /**the shelter's phone number*/
     private String phoneNumber;
 
+    private List<String> _details;
+
+    private List<String> _headers;
+
     /******************************
      * Getters
      */
@@ -60,8 +67,29 @@ public class Shelter {
     public String getSpecialNotes () {
         return specialNotes;
     }
+    public List<String> getDetails() {
+        return _details;
+    }
+    public List<String> getHeaders() {return _headers;}
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+    public void setDetails() {
+        _details = new ArrayList<>();
+        _details.add(shelterName);
+        _details.add(capacity);
+        _details.add(address);
+        _details.add(specialNotes);
+        _details.add(phoneNumber);
+    }
+    public void setHeaders() {
+        _headers = new ArrayList<>();
+        _headers.add("Name:");
+        _headers.add("Capacity:");
+        _headers.add("Address:");
+        _headers.add("Notes:");
+        _headers.add("Phone Number:");
+
     }
     public Shelter(int key, String name, String cap, String restr, float longi, float lati, String addr, String note, String phoneNum) {
         uniqueKey = key;

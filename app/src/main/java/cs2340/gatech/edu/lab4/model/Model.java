@@ -19,6 +19,8 @@ public class Model {
     private static ArrayList<Admin> admins = new ArrayList<Admin>();
     private static ArrayList<Shelter> shelters = new ArrayList<>();
     private static int _numAccounts = users.size() + admins.size();
+    private Shelter _currentShelter;
+    private final Shelter theNullShelter = new Shelter(0,"no such shelter","capacity","restriction",0,0,"address","note","phone");
 
     public static ArrayList getAccountList(AccountType type) {
         if(type.equals(AccountType.USER)) return users;
@@ -117,6 +119,20 @@ public class Model {
     }
     public static void addToShelters(Shelter shelter) {
         shelters.add(shelter);
+    }
+    public Shelter getCurrentShelter() {
+        return _currentShelter;
+    }
+    public void setCurrentShelter(Shelter shelter) {
+        _currentShelter = shelter;
+    }
+    public Shelter getShelterById(int id) {
+        for (Shelter s: shelters) {
+            if (s.getKey() == id) {
+                return s;
+            }
+        }
+        return theNullShelter;
     }
 
 }
