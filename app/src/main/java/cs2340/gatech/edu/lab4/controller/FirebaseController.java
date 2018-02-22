@@ -72,7 +72,7 @@ public class FirebaseController {
                             String aShelter = dataSnapshot.child("shelters/" + i).getValue().toString();
                             Gson g = new Gson();
                             Shelter shelter = g.fromJson(aShelter, Shelter.class);
-                            Model.addToShelters(shelter);
+                            Model.addShelter(shelter);
                         }
                     }
                 }

@@ -117,9 +117,6 @@ public class Model {
     public static void addToAdmins(Admin admin) {
         admins.add(admin);
     }
-    public static void addToShelters(Shelter shelter) {
-        shelters.add(shelter);
-    }
     public Shelter getCurrentShelter() {
         return _currentShelter;
     }
