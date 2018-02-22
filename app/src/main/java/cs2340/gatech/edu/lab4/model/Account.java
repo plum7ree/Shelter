@@ -8,6 +8,9 @@ import java.util.List;
  */
 
 public abstract class Account {
+    public Account() {
+
+    }
     public static List<AccountType> legalAccountTypes = Arrays.asList(AccountType.USER,AccountType.ADMIN);
 
     String username;

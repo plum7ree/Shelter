@@ -6,6 +6,6 @@ package cs2340.gatech.edu.lab4.model;
 
 public enum AccountType {
     ADMIN,
-    USER;
+    USER
 
 }

@@ -28,10 +28,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        username = (TextView) findViewById(R.id.username_field);
-        password = (TextView) findViewById(R.id.password_field);
-        confirmPassword = (TextView) findViewById(R.id.confirm_password_field);
-        accountTypeSpinner = (Spinner) findViewById(R.id.spinner);
+        username = findViewById(R.id.username_field);
+        password = findViewById(R.id.password_field);
+        confirmPassword = findViewById(R.id.confirm_password_field);
+        accountTypeSpinner = findViewById(R.id.spinner);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Account.legalAccountTypes);
@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if(!isUserExists(username.getText().toString())) {
             if(isValidPassword(password.getText().toString(), confirmPassword.getText().toString())) {
-                model.addNewAccount(username.getText().toString(),password.getText().toString(),
+                Model.addNewAccount(username.getText().toString(),password.getText().toString(),
                         (AccountType) accountTypeSpinner.getSelectedItem());
                 finish();
             }
@@ -77,9 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
      * @param str
      * @return
      */
-    private boolean isUserExists(String str){
+    public boolean isUserExists(String str){
         for(AccountType t : AccountType.values()) {
-            for (Object o: model.getAccountList(t)) {
+            for (Object o: Model.getAccountList(t)) {
                 if (((Account)o).getUsername().equals(str)) return true;
             }
         }

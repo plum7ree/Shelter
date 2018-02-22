@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,8 @@
             android:name=".controller.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.AfterLoginActivity"></activity>
+        <activity android:name=".controller.AfterLoginActivity" />
+        <activity android:name=".controller.ShelterListActivity"></activity>
     </application>
 
 </manifest>

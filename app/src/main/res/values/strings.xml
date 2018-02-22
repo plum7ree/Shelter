@@ -15,4 +15,8 @@
         completions."
     </string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_shelter_list">Shelters</string>
+    <string name="title_shelter_detail">Shelter Detail</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>
