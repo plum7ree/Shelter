@@ -30,7 +30,6 @@
             android:name=".controller.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.AfterLoginActivity" />
         <activity android:name=".controller.ShelterListActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

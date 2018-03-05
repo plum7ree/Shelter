@@ -7,6 +7,9 @@
         android:id="@+id/search_option"
         android:title="Search"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="never" />
 
 </menu>

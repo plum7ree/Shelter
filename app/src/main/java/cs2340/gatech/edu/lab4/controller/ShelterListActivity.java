@@ -126,6 +126,10 @@ public class ShelterListActivity extends AppCompatActivity {
                 startActivity(myIntent);
                 return true;
 
+            case R.id.logout:
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
 
             default:
                 // If we got here, the user's action was not recognized.
