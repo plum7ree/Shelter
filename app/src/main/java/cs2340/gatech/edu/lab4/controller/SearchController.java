@@ -66,10 +66,12 @@ public class SearchController {
         //filter "temp" by pa, and store to _searchResult
         if(!pa.equals(Age.ALL)) {
             for (Shelter s : temp) {                //Here temp!!!
-                Age a = findAgeOfThis(s);
-                if(pa.equals(a) || a.equals(Age.ALL)) {
-                    Log.d("Edit", "pa : " + pg.toString() + ",,,a: " + a.toString());
-                    _searchResult.add(s);
+                ArrayList<Age> arr = findAgeOfThis(s);
+                for(Age a : arr) {
+                    if(pa.equals(a) || a.equals(Age.ALL)) {
+                        Log.d("Edit", "pa : " + pg.toString() + ",,,a: " + a.toString());
+                        _searchResult.add(s);
+                    }
                 }
             }
         } else {
@@ -81,6 +83,8 @@ public class SearchController {
     }
 
     /**
+     * gender restriction must be only one of ALL, MALE, FEMALE
+     * str.equals method used.
      * return the Enum Gender of given shelter.
      * @param s
      * @return
@@ -92,7 +96,7 @@ public class SearchController {
         for (String r: r_factored) { //"Women"
             r = r.trim().toLowerCase(); // "women"
             for(Gender g: Gender.values()) { // g will be an element of [ALL("Anyone"), MALE("Men"), FEMALE("Women")]
-                if (r.contains(g.toString().toLowerCase())) { // does "women" contains "anyone" ?
+                if (r.equals(g.toString().toLowerCase())) { // does "women" equals "anyone" ?
                     Log.d("Edit","r : " + r + "contains :" + g.toString().toLowerCase());
                     ret = Gender.getEnum(g.toString());
                 }
@@ -101,21 +105,34 @@ public class SearchController {
         return ret;
     }
 
-    private Age findAgeOfThis(Shelter s) {
+    /**
+     * Shelter can be combination of Newborn, Children, Young Adults so this method returns array
+     * str.contains method used.
+     * @param s
+     * @return
+     */
+    private ArrayList<Age> findAgeOfThis(Shelter s) {
+        ArrayList<Age> retArr = new ArrayList<>();
         Age ret = Age.ALL;
-        String r_shelter = s.getRestrictions(); //                     Families w/c children under 5
-        String[] r_factored = r_shelter.split("/"); //          ["Families w", "c cildren under 5"]
-        for (String r: r_factored) {
-            r = r.trim().toLowerCase(); //                             "c chilren under 5"
-            for(Age g: Age.values()) {
-                if (r.contains(g.toString().toLowerCase())) { //       "c chilren under 5" contains "children"?
-                    Log.d("Edit","r : " + r + "contains :" + g.toString().toLowerCase());
-                    ret = Age.getEnum(g.toString());
-                }
+        String r_shelter = s.getRestrictions(); //
+        r_shelter = r_shelter.trim().toLowerCase(); //
+        for(Age g: Age.values()) {
+            Log.d("Edit","r : " + r_shelter + "contains :" + g.toString().toLowerCase());
+            if (r_shelter.contains(g.toString().toLowerCase())) { // ex)  "Families w/ chilren under 5" contains "children"?
+                Log.d("Edit","r : " + r_shelter + "contains :" + g.toString().toLowerCase());
+                ret = Age.getEnum(g.toString());
+                retArr.add(ret);
             }
         }
+
         Log.d("Edit","Age ret:    " + ret.toString());
-        return ret;
+//        if (retArr.size() == 0) {
+//            // if shleter has no restriction for age, then add Age.ALL("Anyone")
+//            // but this code can cause the situation like this:
+//            // A Shelter which has only gender restriction "Men" can be popped after filter by "Newborns"
+//            retArr.add(Age.ALL);
+//        }
+        return retArr;
     }
 
 
