@@ -92,7 +92,8 @@ public class SearchController {
         for (String r: r_factored) { //"Women"
             r = r.trim().toLowerCase(); // "women"
             for(Gender g: Gender.values()) { // g will be an element of [ALL("Anyone"), MALE("Men"), FEMALE("Women")]
-                if (r.equals(g.toString().toLowerCase())) { // does "women" equals "anyone" ?
+                if (r.contains(g.toString().toLowerCase())) { // does "women" contains "anyone" ?
+                    Log.d("Edit","r : " + r + "contains :" + g.toString().toLowerCase());
                     ret = Gender.getEnum(g.toString());
                 }
             }
@@ -102,12 +103,13 @@ public class SearchController {
 
     private Age findAgeOfThis(Shelter s) {
         Age ret = Age.ALL;
-        String r_shelter = s.getRestrictions(); // Women/Children
-        String[] r_factored = r_shelter.split("/"); // -> ["Women", "Children"]
+        String r_shelter = s.getRestrictions(); //                     Families w/c children under 5
+        String[] r_factored = r_shelter.split("/"); //          ["Families w", "c cildren under 5"]
         for (String r: r_factored) {
-            r = r.trim().toLowerCase(); // "children"
-            for(Age g: Age.values()) { // g will be ALL("Anyone"), NEWBORN, CHILDREN, YOUNG_ADULTS
-                if (r.equals(g.toString().toLowerCase())) { // "children" equals "anyone" ?
+            r = r.trim().toLowerCase(); //                             "c chilren under 5"
+            for(Age g: Age.values()) {
+                if (r.contains(g.toString().toLowerCase())) { //       "c chilren under 5" contains "children"?
+                    Log.d("Edit","r : " + r + "contains :" + g.toString().toLowerCase());
                     ret = Age.getEnum(g.toString());
                 }
             }

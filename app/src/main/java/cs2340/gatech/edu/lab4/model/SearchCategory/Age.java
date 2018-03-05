@@ -21,7 +21,7 @@ public enum Age {
 
     /**
      * use this method instead of valueOf because valueOf only takes parameters of ALL, NEWBORN, CHILDREN ...
-     * But this method takes parameters of "anyone", "newborns" ...etc.
+     * But this method can take parameters of "anyone", "newborns" ...etc.
      * @param value
      * @return
      */
