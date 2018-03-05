@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class ShelterSearchPopup extends Activity {
 
     private Spinner genderSpinner;
     private Spinner ageSpinner;
+    private EditText searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class ShelterSearchPopup extends Activity {
 
         genderSpinner = findViewById(R.id.gender_spinner);
         ageSpinner = findViewById(R.id.age_spinner);
+        searchBar = findViewById(R.id.search_bar);
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, genderCategory);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -53,7 +56,7 @@ public class ShelterSearchPopup extends Activity {
     }
 
     public void onSearchPressed(View view) {
-        sc.search((Gender)genderSpinner.getSelectedItem(), (Age)ageSpinner.getSelectedItem());
+        sc.search(searchBar.getText().toString(), (Gender)genderSpinner.getSelectedItem(), (Age)ageSpinner.getSelectedItem());
         finish();
     }
 

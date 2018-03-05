@@ -29,12 +29,23 @@ public class SearchController {
      * @param g
      * @param a
      */
-    public void search(Gender g, Age a) {
+    public void search(String searchStr, Gender g, Age a) {
         _searchResult.clear();
-        filterByRestriction(g,a);
+        if(!searchStr.trim().isEmpty()){
+            searchName(searchStr.trim());
+        } else {
+            filterByRestriction(g,a);
+        }
 
     }
 
+    private void searchName(String searchStr) {
+        for (Shelter s: Model.getShelters()){
+            if (s.getName().equals(searchStr)) {
+                _searchResult.add(s);
+            }
+        }
+    }
 
     private void filterByRestriction(Gender pg, Age pa) {
         ArrayList<Shelter> temp = new ArrayList<>();
@@ -42,7 +53,7 @@ public class SearchController {
         if(!pg.equals(Gender.ALL)){
             for (Shelter s : Model.getShelters()) { //Here Model
                 Gender g = findGenderOfThis(s);
-                if(pg.equals(g)) {
+                if(pg.equals(g) || g.equals(Gender.ALL)) {
                     Log.d("Edit", "pg : " + pg.toString() + ",,,g: " + g.toString());
                     temp.add(s);
                 }
@@ -56,7 +67,7 @@ public class SearchController {
         if(!pa.equals(Age.ALL)) {
             for (Shelter s : temp) {                //Here temp!!!
                 Age a = findAgeOfThis(s);
-                if(pa.equals(a)) {
+                if(pa.equals(a) || a.equals(Age.ALL)) {
                     Log.d("Edit", "pa : " + pg.toString() + ",,,a: " + a.toString());
                     _searchResult.add(s);
                 }
