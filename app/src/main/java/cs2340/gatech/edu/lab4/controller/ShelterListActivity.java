@@ -7,19 +7,20 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-import cs2340.gatech.edu.lab4.model.Shelter;
-import cs2340.gatech.edu.lab4.model.Model;
-import cs2340.gatech.edu.lab4.R;
-
 import java.util.List;
+
+import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.Model;
+import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
+import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
+import cs2340.gatech.edu.lab4.model.Shelter;
 
 /**
  * THIS IS OUR TOP_LEVEL WINDOW THAT THE USER FIRST SEES IN THE APPLICATION!
@@ -41,24 +42,22 @@ public class ShelterListActivity extends AppCompatActivity {
      * device.  For 2340, this is optional, since multi-display support is extra credit.
      */
     private boolean mTwoPane;
+    public static final String ARG_GENDER = "gender";
+    public static final Gender currentGenderSearchOption = Gender.ALL;
+    public static final String ARG_AGE = "age";
+    public static final Age currentAgeSearchOption = Age.ALL;
+
+    private SimpleCourseRecyclerViewAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter_list);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle(getTitle());
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //Step 1.  Setup the recycler view by getting it from our layout in the main window
         View recyclerView = findViewById(R.id.course_list);
@@ -74,6 +73,66 @@ public class ShelterListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_shelter_list);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        View recyclerView = findViewById(R.id.course_list);
+
+        setupRecyclerView((RecyclerView) recyclerView);
+
+    }
+
+
+    /**
+     * Option Menu will be created on toolbar
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.shleter_list_options, menu);
+//
+//        MenuItem searchItem = menu.findItem(R.id.action_search);
+//        SearchView searchView =
+//                (SearchView) searchItem.getActionView();
+//
+//        // Configure the search info and add any event listeners...
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * This method handle when a item from menu is chosen.
+     * When each menu is chosen, a window pop-up as a new Activity.
+     * Pop-up window
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search_option:
+                Intent myIntent = new Intent(getApplicationContext(), ShelterSearchPopup.class);
+                myIntent.putExtra(ARG_GENDER,currentGenderSearchOption);
+                myIntent.putExtra(ARG_AGE, currentAgeSearchOption);
+                startActivity(myIntent);
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     /**
@@ -81,8 +140,8 @@ public class ShelterListActivity extends AppCompatActivity {
      * @param recyclerView  the view that needs this adapter
      */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        Model model = Model.getInstance();
-        recyclerView.setAdapter(new SimpleCourseRecyclerViewAdapter(model.getShelters()));
+        recyclerView.setAdapter(new SimpleCourseRecyclerViewAdapter(SearchController.getInstance().getSearchResult()));
+        recyclerView.invalidate();
     }
 
     /**
@@ -98,6 +157,7 @@ public class ShelterListActivity extends AppCompatActivity {
          * Collection of the items to be shown in this list.
          */
         private final List<Shelter> mShelters;
+
 
         /**
          * set the items to be used by the adapter

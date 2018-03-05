@@ -97,6 +97,7 @@ public class Model {
         } else {
             shelters.add(newShelter);
         }
+
     }
 
     public static ArrayList<User> getUsers() {

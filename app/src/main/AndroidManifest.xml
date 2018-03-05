@@ -31,8 +31,14 @@
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.AfterLoginActivity" />
-        <activity android:name=".controller.ShelterListActivity"></activity>
+        <activity android:name=".controller.ShelterListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.ShelterDetailActivity"></activity>
+        <activity
+            android:name=".controller.ShelterSearchPopup"
+            android:theme="@style/AppTheme.Popup"
+            >
+        </activity>
     </application>
 
 </manifest>

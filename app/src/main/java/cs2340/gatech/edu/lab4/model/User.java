@@ -15,6 +15,7 @@ public class User extends Account{
         type = t;
     }
 
+
     public AccountType getAccountType() {
         return type;
     }

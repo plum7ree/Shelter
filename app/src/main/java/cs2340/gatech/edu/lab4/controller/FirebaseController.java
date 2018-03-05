@@ -1,9 +1,5 @@
 package cs2340.gatech.edu.lab4.controller;
 
-import android.app.Application;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,13 +7,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import cs2340.gatech.edu.lab4.model.Account;
 import cs2340.gatech.edu.lab4.model.AccountType;
 import cs2340.gatech.edu.lab4.model.Admin;
 import cs2340.gatech.edu.lab4.model.Model;
@@ -77,7 +66,7 @@ public class FirebaseController {
                     }
                 }
 
-
+                System.out.println("Shelter from array: " + Model.getShelters());
             }
 
             @Override

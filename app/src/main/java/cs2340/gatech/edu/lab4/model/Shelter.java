@@ -110,4 +110,12 @@ public class Shelter {
         return shelterName;
     }
 
+    public boolean equals(Shelter s) {
+        if(!(s instanceof Shelter)) {
+            return false;
+        }
+
+        return this.toString().equals(s.toString());
+    }
+
 }
