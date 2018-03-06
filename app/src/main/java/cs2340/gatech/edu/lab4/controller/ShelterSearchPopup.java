@@ -15,6 +15,8 @@ import cs2340.gatech.edu.lab4.R;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
 
+import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_AGE;
+import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_GENDER;
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.currentAgeSearchOption;
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.currentGenderSearchOption;
 
@@ -50,12 +52,17 @@ public class ShelterSearchPopup extends Activity {
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ageSpinner.setAdapter(ageAdapter);
 
-        genderSpinner.setSelection(findPosition(currentGenderSearchOption));
-        ageSpinner.setSelection(findPosition(currentAgeSearchOption));
-
+        if (getIntent().hasExtra(ARG_GENDER)) {
+            genderSpinner.setSelection(findPosition(currentGenderSearchOption));
+        }
+        if (getIntent().hasExtra(ARG_AGE)) {
+            ageSpinner.setSelection(findPosition(currentAgeSearchOption));
+        }
     }
 
     public void onSearchPressed(View view) {
+        currentGenderSearchOption = (Gender) genderSpinner.getSelectedItem();
+        currentAgeSearchOption = (Age) ageSpinner.getSelectedItem();
         sc.search(searchBar.getText().toString(), (Gender)genderSpinner.getSelectedItem(), (Age)ageSpinner.getSelectedItem());
         finish();
     }

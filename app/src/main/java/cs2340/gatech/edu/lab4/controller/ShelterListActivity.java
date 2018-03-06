@@ -43,9 +43,9 @@ public class ShelterListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
     public static final String ARG_GENDER = "gender";
-    public static final Gender currentGenderSearchOption = Gender.ALL;
+    public static Gender currentGenderSearchOption = Gender.ALL;
     public static final String ARG_AGE = "age";
-    public static final Age currentAgeSearchOption = Age.ALL;
+    public static Age currentAgeSearchOption = Age.ALL;
 
     private SimpleCourseRecyclerViewAdapter adapter;
 
