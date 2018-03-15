@@ -7,11 +7,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import cs2340.gatech.edu.lab4.model.Account;
 import cs2340.gatech.edu.lab4.model.AccountType;
-import cs2340.gatech.edu.lab4.model.Admin;
 import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.model.Shelter;
-import cs2340.gatech.edu.lab4.model.User;
 
 /**
  * Created by mike on 2/20/18.
@@ -40,20 +39,14 @@ public class FirebaseController {
                             String type = dataSnapshot.child("accounts/" + i + "/accountType").getValue().toString();
                             String aStr = dataSnapshot.child("accounts/" + i).getValue().toString();
                             Gson g = new Gson();
-                            if (type.equals("ADMIN".toString())) {
-                                Admin u = g.fromJson(aStr, Admin.class);
-                                if (!reg.isUserExists(u.getUsername())) {
-                                    Model.addToAdmins(u);
-                                }
-                            } else if (type.equals("USER".toString())) {
-                                User u = g.fromJson(aStr, User.class);
-                                if (!reg.isUserExists(u.getUsername())) {
-                                    Model.addToUsers(u);
+                                Account a = g.fromJson(aStr, Account.class);
+                                if (!reg.isUserExists(a.getUsername())) {
+                                    Model.getAccountsFromDatabase(a);
                                 }
                             }
                         }
                     }
-                }
+
                 long numShelters = dataSnapshot.child("shelters").getChildrenCount();
                 if (numShelters != 0) {
                     for (int i = 0; i < numShelters; i++) {
@@ -77,8 +70,8 @@ public class FirebaseController {
     }
 
     public static void postAccount(String id, String username, String password, AccountType type) {
-        User user = new User(username,password,type);
-        myRef.child("accounts/" + id).setValue(user);
+        Account a = new Account(username,password,type);
+        myRef.child("accounts/" + id).setValue(a);
 
     }
 }

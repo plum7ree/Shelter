@@ -43,6 +43,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * according to class,
+     * @param view
+     */
     public void onRegisterPressed(View view) {
 
         if(accountTypeSpinner.getSelectedItem() == null) {
@@ -78,10 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
      * @return
      */
     public boolean isUserExists(String str){
-        for(AccountType t : AccountType.values()) {
-            for (Object o: Model.getAccountList(t)) {
-                if (((Account)o).getUsername().equals(str)) return true;
-            }
+        for (Object o: Model.getAccountList()) {
+            if (((Account) o).getUsername().equals(str)) return true;
         }
         return false;
     }

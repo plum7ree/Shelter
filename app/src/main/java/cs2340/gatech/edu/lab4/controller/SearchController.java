@@ -41,7 +41,7 @@ public class SearchController {
 
     private void searchName(String searchStr) {
         for (Shelter s: Model.getShelters()){
-            if (s.getName().equals(searchStr)) {
+            if (s.getName().contains(searchStr)) {
                 _searchResult.add(s);
             }
         }
