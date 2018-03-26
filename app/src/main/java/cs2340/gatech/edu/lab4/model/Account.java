@@ -9,32 +9,32 @@ import java.util.List;
 
 public class Account {
 
-    private String _username;
-    private String _password;
-    AccountType _type;
+    private String username;
+    private String password;
+    AccountType type;
 
-    public Account(String username, String pass, AccountType t) {
-        _username = username;
-        _password = pass;
-        _type = t;
+    public Account(String user, String pass, AccountType t) {
+        username = user;
+        password = pass;
+        type = t;
     }
     public static List<AccountType> legalAccountTypes = Arrays.asList(AccountType.USER,AccountType.ADMIN);
 
-    public String getUsername() { return _username; }
-    public String getPassword() { return _password; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
 
 
     public AccountType getAccountType() {
-        return _type;
+        return type;
     }
     public String toString() {
-        return _username + " " + _password + " " + _type;
+        return username + " " + password + " " + type;
     }
 
     @Override
     public boolean equals(Object o) {
         Account account = (Account) o;
-        return account._username.equals(((Account) o).getUsername());
+        return account.username.equals(((Account) o).getUsername());
     }
 
 }
