@@ -7,22 +7,34 @@ import java.util.List;
  * Created by Zumong on 2/16/18.
  */
 
-public abstract class Account {
-    public Account() {
+public class Account {
 
+    private String username;
+    private String password;
+    AccountType type;
+
+    public Account(String user, String pass, AccountType t) {
+        username = user;
+        password = pass;
+        type = t;
     }
     public static List<AccountType> legalAccountTypes = Arrays.asList(AccountType.USER,AccountType.ADMIN);
 
-    String username;
-    String password;
-    AccountType type;
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+
+
+    public AccountType getAccountType() {
+        return type;
+    }
+    public String toString() {
+        return username + " " + password + " " + type;
+    }
 
     @Override
     public boolean equals(Object o) {
         Account account = (Account) o;
-        return account.username.equals(((Account) o).username);
+        return account.username.equals(((Account) o).getUsername());
     }
 
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
 }
