@@ -38,6 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+
         <activity android:name=".controller.ShelterDetailActivity"></activity>
         <activity
             android:name=".controller.MapController"
