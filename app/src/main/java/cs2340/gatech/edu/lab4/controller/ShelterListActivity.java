@@ -132,7 +132,7 @@ public class ShelterListActivity extends AppCompatActivity {
                 startActivity(intent);
 
             case R.id.map:
-                Intent mapIntent = new Intent(getBaseContext(), ShelterMapPopup.class);
+                Intent mapIntent = new Intent(getBaseContext(), MapController.class);
                 mapIntent.putExtra(ARG_GENDER,currentGenderSearchOption);
                 mapIntent.putExtra(ARG_AGE, currentAgeSearchOption);
                 startActivity(mapIntent);

@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map"
-    tools:context="cs2340.gatech.edu.lab4.controller.ShelterMapPopup">
+    tools:context="cs2340.gatech.edu.lab4.controller.MapController">
 
 </fragment>
