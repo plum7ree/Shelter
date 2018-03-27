@@ -12,6 +12,7 @@ public class Account {
     private String username;
     private String password;
     AccountType type;
+    private boolean hasReservation = false;
 
     public Account(String user, String pass, AccountType t) {
         username = user;
@@ -22,7 +23,7 @@ public class Account {
 
     public String getUsername() { return username; }
     public String getPassword() { return password; }
-
+    public boolean getHasReservation() {return hasReservation;}
 
     public AccountType getAccountType() {
         return type;
@@ -30,6 +31,7 @@ public class Account {
     public String toString() {
         return username + " " + password + " " + type;
     }
+    public void setHasReservation(Boolean has) {hasReservation = has;}
 
     @Override
     public boolean equals(Object o) {

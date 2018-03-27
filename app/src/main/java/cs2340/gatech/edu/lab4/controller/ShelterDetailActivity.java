@@ -85,5 +85,11 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onReserveClick(View view) {
+        Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
+        startActivity(intent);
+    }
+
 }
 

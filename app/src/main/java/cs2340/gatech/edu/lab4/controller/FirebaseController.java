@@ -74,4 +74,10 @@ public class FirebaseController {
         myRef.child("accounts/" + id).setValue(a);
 
     }
+    public static void updateAvailableBeds(Shelter currentShelter, int availableBeds) {
+        int key = currentShelter.getKey();
+        myRef.child("shelter/" + key + "/availableBeds").setValue(availableBeds);
+
+    }
+
 }

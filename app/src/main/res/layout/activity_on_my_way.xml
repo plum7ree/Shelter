@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs2340.gatech.edu.lab4.controller.OnMyWayActivity">
+
+    <Button
+        android:id="@+id/cancelRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:onClick="onCancelRes"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <EditText
+        android:id="@+id/onMyWayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="You are on your way!"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <Button
+        android:id="@+id/arrived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrived!"
+        android:onClick="onArrivedPressed"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="289dp" />
+
+
+</android.support.constraint.ConstraintLayout>
