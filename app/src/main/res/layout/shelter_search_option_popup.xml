@@ -59,18 +59,19 @@
         android:id="@+id/genderSpinnerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/age_spinner"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="43dp"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="41dp"
         android:text="Gender" />
 
     <TextView
         android:id="@+id/ageSpinnerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/cancel_button"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp"
+        android:layout_alignStart="@+id/genderSpinnerTitle"
+        android:layout_below="@+id/gender_spinner"
+        android:layout_marginTop="39dp"
         android:text="Age" />
 
 </RelativeLayout>
