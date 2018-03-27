@@ -13,18 +13,20 @@
         android:id="@+id/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:ems="20"
+        android:hint="Search Shelters"
         android:inputType="text" />
 
     <Spinner
         android:id="@+id/gender_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_below="@+id/search_bar"
 
-        android:layout_marginTop="75dp" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginTop="69dp" />
 
     <Spinner
         android:id="@+id/age_spinner"
@@ -52,4 +54,23 @@
         android:layout_alignParentEnd="true"
         android:onClick="onSearchPressed"
         android:text="Search" />
+
+    <TextView
+        android:id="@+id/genderSpinnerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/age_spinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="34dp"
+        android:text="Gender" />
+
+    <TextView
+        android:id="@+id/ageSpinnerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cancel_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="33dp"
+        android:text="Age" />
+
 </RelativeLayout>
