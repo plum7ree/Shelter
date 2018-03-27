@@ -1,21 +1,19 @@
 package cs2340.gatech.edu.lab4.controller;
 
-import cs2340.gatech.edu.lab4.R;
-import cs2340.gatech.edu.lab4.controller.FirebaseController;
-import cs2340.gatech.edu.lab4.model.Account;
-import cs2340.gatech.edu.lab4.model.Model;
-import cs2340.gatech.edu.lab4.model.Shelter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.Model;
+import cs2340.gatech.edu.lab4.model.Shelter;
 
 /**
  * Created by Abigail Cliche on 3/26/2018.
@@ -26,19 +24,21 @@ public class ReserveActivity extends AppCompatActivity {
     private TextView shelterName;
     private TextView availableBeds;
     private Spinner resNumberSpinner;
-    private static Shelter shelter = Model.getInstance().getCurrentShelter();
-    private Button okButton;
+    private static Shelter currentShelter;
+    private int numBeds;
+    private int newNumBeds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
-
+        currentShelter= Model.getInstance().getCurrentShelter();
         shelterName = findViewById(R.id.shelterName);
-        shelterName.setText(shelter.toString());
+        shelterName.setText(currentShelter.toString());
         availableBeds = findViewById(R.id.bedNumber);
-        int numAvailableBeds = shelter.getAvailableBeds();
-        availableBeds.setText(numAvailableBeds);
+        int numAvailableBeds = currentShelter.getAvailableBeds();
+        Log.d("E", "----------------num available beds:" + numAvailableBeds);
+        availableBeds.setText(""+numAvailableBeds);
         resNumberSpinner = findViewById(R.id.bedSpinner);
 
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
@@ -52,17 +52,30 @@ public class ReserveActivity extends AppCompatActivity {
     }
     /**send to firebase and activity*/
     public void onOkayPressed(View view){
-        int numBeds = (int)resNumberSpinner.getSelectedItem();
-        int newNumBeds = (shelter.getAvailableBeds() - numBeds);
+        numBeds = (int)resNumberSpinner.getSelectedItem();
+        newNumBeds = (currentShelter.getAvailableBeds() - numBeds);
         if (newNumBeds < 0) {
             Snackbar.make(view, "There are not enough beds available.", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         } else {
-            FirebaseController.updateAvailableBeds(shelter, newNumBeds);
-            shelter.setAvailableBeds(newNumBeds);
-            Intent intent = new Intent(getBaseContext(), OnMyWayActivity.class);
-            intent.putExtra("numReserved", numBeds);
-            startActivity(intent);
+            FirebaseController.getInstance().updateAvailableBeds(currentShelter, newNumBeds);
+            currentShelter.setAvailableBeds(newNumBeds);
+
+
+            Runnable startOnMyWayActivity = new Runnable() {
+                public void run() {
+                    Intent intent = new Intent(getBaseContext(), OnMyWayActivity.class);
+                    intent.putExtra("numReserved", numBeds+"");
+                    startActivity(intent);                }
+            };
+
+            FirebaseController.getInstance().updateShelterListInModel();
+            Handler handler = new Handler();
+            Snackbar.make(view, "confirming reservation, wait for sec", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            handler.postDelayed(startOnMyWayActivity, 3000);
+
+
         }
     }
 

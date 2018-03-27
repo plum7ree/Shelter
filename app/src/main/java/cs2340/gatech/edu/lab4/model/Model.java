@@ -128,5 +128,13 @@ public class Model {
         }
         return theNullShelter;
     }
+    public void setShelterById(int id, Shelter newShelter) {
+        for (int i = 0; i < _shelters.size(); i++) {
+            if (_shelters.get(i).getKey() == id) {
+                _shelters.set(i, newShelter);
+            }
+        }
+    }
+
 
 }
