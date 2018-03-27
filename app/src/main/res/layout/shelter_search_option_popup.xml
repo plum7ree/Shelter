@@ -26,7 +26,7 @@
 
         android:layout_alignParentStart="true"
         android:layout_below="@+id/search_bar"
-        android:layout_marginTop="85dp" />
+        android:layout_marginTop="130dp" />
 
     <Spinner
         android:id="@+id/age_spinner"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/gender_spinner"
-        android:layout_marginTop="82dp" />
+        android:layout_marginTop="117dp" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -56,22 +56,21 @@
         android:text="Search" />
 
     <TextView
-        android:id="@+id/genderSpinnerTitle"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/gender_spinner"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/search_bar"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginBottom="50dp"
         android:text="Gender" />
 
     <TextView
-        android:id="@+id/ageSpinnerTitle"
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/genderSpinnerTitle"
-        android:layout_below="@+id/gender_spinner"
-        android:layout_marginTop="39dp"
+        android:layout_above="@+id/cancel_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="48dp"
         android:text="Age" />
 
 </RelativeLayout>
