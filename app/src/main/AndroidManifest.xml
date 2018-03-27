@@ -10,6 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+
 
 
     <application
@@ -19,6 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC4BFhzbxXCM71Q4BN8ZKg8kIP9jVU84sw" />
+        <meta-data
+            android:name="com.google.android.gms.12.0.0"
+            android:value="play-services-games:12.0.0"/>
         <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,8 +48,12 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-
         <activity android:name=".controller.ShelterDetailActivity"></activity>
+        <activity
+            android:name=".controller.ShelterSearchPopup"
+            android:theme="@style/AppTheme.Popup"
+         >
+        </activity>
         <activity
             android:name=".controller.MapController"
             android:label="Map Controller">
@@ -48,15 +62,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyC4BFhzbxXCM71Q4BN8ZKg8kIP9jVU84sw" />
-        <meta-data
-            android:name="com.google.android.gms.12.0.0"
-            android:value="play-services-games:12.0.0"/>
+
+
+    </activity>
 
     </application>
-
 
 </manifest>
