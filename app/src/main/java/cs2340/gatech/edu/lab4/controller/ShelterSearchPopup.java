@@ -8,12 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cs2340.gatech.edu.lab4.R;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
+import cs2340.gatech.edu.lab4.model.Shelter;
 
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_AGE;
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_GENDER;
@@ -28,7 +30,8 @@ public class ShelterSearchPopup extends Activity {
 
     private static List<Gender> genderCategory = Arrays.asList(Gender.ALL, Gender.MALE,Gender.FEMALE);
     private static List<Age> ageCategory = Arrays.asList(Age.ALL, Age.CHILDREN, Age.NEWBORN, Age.YOUNG_ADULTS);
-    SearchController sc = SearchController.getInstance();
+    static SearchController sc = SearchController.getInstance();
+
 
     private Spinner genderSpinner;
     private Spinner ageSpinner;
@@ -80,6 +83,9 @@ public class ShelterSearchPopup extends Activity {
             }
         }
         return 0;
+    }
+    public static SearchController getSearchController(){
+        return sc;
     }
 
 }

@@ -2,7 +2,9 @@ package cs2340.gatech.edu.lab4.controller;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,7 +21,7 @@ import cs2340.gatech.edu.lab4.R;
  * Created by Owner on 3/25/2018.
  */
 
-public class MapController extends AppCompatActivity implements OnMapReadyCallback {
+public class MapController extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +29,12 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
         setContentView(R.layout.activity_map);
         // getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+        Log.d ("sss", "Getting fragment");
+        SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
+        Log.d("sss", "getting map for: " + mapFragment);
         mapFragment.getMapAsync(this);
+
 
 
     }
@@ -45,6 +51,7 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Log.d("sss", "got the map");
         // Add a marker in Sydney, Australia,
         // and move the map's camera to the same location.
         LatLng sydney = new LatLng(-33.852, 151.211);

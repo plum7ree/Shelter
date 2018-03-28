@@ -11,10 +11,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
-
-
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +28,8 @@
             android:value="AIzaSyC4BFhzbxXCM71Q4BN8ZKg8kIP9jVU84sw" />
         <meta-data
             android:name="com.google.android.gms.12.0.0"
-            android:value="play-services-games:12.0.0"/>
+            android:value="play-services-games:12.0.0" />
+
         <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,28 +45,19 @@
             android:name=".controller.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.ShelterListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity android:name=".controller.ShelterDetailActivity"></activity>
+        <activity
+            android:name=".controller.ShelterListActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controller.ShelterDetailActivity" />
         <activity
             android:name=".controller.ShelterSearchPopup"
-            android:theme="@style/AppTheme.Popup"
-         >
-        </activity>
+            android:theme="@style/AppTheme.Popup"></activity>
         <activity
             android:name=".controller.MapController"
-            android:label="Map Controller">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
-    </activity>
-
+            android:label="Map Controller"></activity>
+        <activity
+            android:name=".controller.MapsActivity123"
+            android:label="@string/title_activity_maps123"></activity>
     </application>
 
 </manifest>
