@@ -107,6 +107,13 @@ public class Model {
         }
 
     }
+    public static void updateBedsAvailable(Shelter currentShelter) {
+        for (Shelter shelter:_shelters
+             ) {
+            System.out.println("Shelter Name:" + shelter.getName() + " Beds Available: " + shelter.getAvailableBeds());
+
+        }
+    }
 
     public static ArrayList<Shelter> getShelters() {
         return _shelters;

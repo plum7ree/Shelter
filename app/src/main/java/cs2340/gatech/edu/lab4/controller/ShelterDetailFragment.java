@@ -106,6 +106,15 @@ public class ShelterDetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        Model model = Model.getInstance();
+        // mShelter = model.getCourseById(getArguments().getInt(ARG_COURSE_ID));
+        mShelter = model.getCurrentShelter();
+        mShelter.setDetails();
+        mShelter.setHeaders();
+        shelterDetailList = mShelter.getDetails();
+        shelterHeaderList = mShelter.getHeaders();
+        adapter.updateData(shelterDetailList);
         Log.d("############", "Details : " + mShelter.getAvailableBeds());
         adapter.notifyDataSetChanged();
     }
@@ -135,6 +144,10 @@ public class ShelterDetailFragment extends Fragment {
          */
         private List<String> mValues;
         private final List<String> mHeaders;
+
+        public void updateData(List<String> items) {
+            mValues = items;
+        }
 
         /**
          * set the items to be used by the adapter

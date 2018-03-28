@@ -74,6 +74,7 @@ public class ReserveActivity extends AppCompatActivity {
             Snackbar.make(view, "confirming reservation, wait for sec", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             handler.postDelayed(startOnMyWayActivity, 3000);
+            model.updateBedsAvailable(currentShelter);
 
 
         }
