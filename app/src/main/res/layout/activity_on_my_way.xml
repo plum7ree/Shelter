@@ -10,20 +10,26 @@
         android:id="@+id/cancelRes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="onCancelRes"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="357dp" />
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrived"
+        tools:layout_editor_absoluteX="148dp" />
 
     <EditText
         android:id="@+id/onMyWayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="You are on your way!"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="212dp" />
+        app:layout_constraintBottom_toTopOf="@+id/arrived"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="95dp" />
 
     <Button
         android:id="@+id/arrived"

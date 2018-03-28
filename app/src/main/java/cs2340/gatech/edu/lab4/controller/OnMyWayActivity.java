@@ -18,7 +18,7 @@ public class OnMyWayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_on_my_way);
     }
     public void onCancelRes(View view){
-        int numBeds = Integer.parseInt(getIntent().getStringExtra("numReserved"));
+        int numBeds = getIntent().getIntExtra("numReserved",1);
         int newNumBeds = (shelter.getAvailableBeds() + numBeds);
         if (newNumBeds > Integer.parseInt(shelter.getCapacity()) ) {
             newNumBeds = Integer.parseInt(shelter.getCapacity());

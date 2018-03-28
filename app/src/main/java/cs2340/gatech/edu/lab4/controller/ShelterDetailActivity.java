@@ -69,7 +69,10 @@ public class ShelterDetailActivity extends AppCompatActivity {
 
 
     }
-
+    public void onReserveClick(View view) {
+        Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
+        startActivity(intent);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -84,11 +87,6 @@ public class ShelterDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onReserveClick(View view) {
-        Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
-        startActivity(intent);
     }
 
 }

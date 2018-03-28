@@ -38,7 +38,7 @@ public class ReserveActivity extends AppCompatActivity {
         shelterName.setText(shelter.toString());
         availableBeds = findViewById(R.id.bedNumber);
         int numAvailableBeds = shelter.getAvailableBeds();
-        availableBeds.setText(numAvailableBeds);
+        availableBeds.setText(String.valueOf(numAvailableBeds));
         resNumberSpinner = findViewById(R.id.bedSpinner);
 
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);

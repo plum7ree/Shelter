@@ -52,6 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="OK"
+            android:onClick="onOkayPressed"
             app:layout_constraintBottom_toTopOf="@+id/cancel"
             app:layout_constraintEnd_toEndOf="@+id/bedSpinner"
             app:layout_constraintStart_toStartOf="@+id/bedSpinner"
@@ -64,6 +65,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:text="Cancel"
+            android:onClick="onCancelPressed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/okay"
             app:layout_constraintStart_toStartOf="@+id/okay" />
