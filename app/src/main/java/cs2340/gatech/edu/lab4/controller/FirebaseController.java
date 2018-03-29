@@ -1,5 +1,7 @@
 package cs2340.gatech.edu.lab4.controller;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,7 +61,7 @@ public class FirebaseController {
                     }
                 }
 
-                System.out.println("Shelter from array: " + Model.getShelters());
+//                System.out.println("Shelter from array: " + Model.getShelters());
             }
 
             @Override
@@ -75,9 +77,37 @@ public class FirebaseController {
 
     }
     public static void updateAvailableBeds(Shelter currentShelter, int availableBeds) {
+        String strBeds = "" + availableBeds;
         int key = currentShelter.getKey();
-        myRef.child("shelter/" + key + "/availableBeds").setValue(availableBeds);
+        Log.d("E", "--------shleter is " + currentShelter.toString() + ",  key is " + key + ", new beds: "+strBeds);
+        myRef.child("shelters/" + key + "/availableBeds").setValue(availableBeds);
 
+    }
+
+    public static void updateShelterListInModel() {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long numShelters = dataSnapshot.child("shelters").getChildrenCount();
+                if (numShelters != 0) {
+                    for (int i = 0; i < numShelters; i++) {
+                        if (dataSnapshot.child("shelters/" + i).getValue() != null) {
+                            String aShelter = dataSnapshot.child("shelters/" + i).getValue().toString();
+                            Gson g = new Gson();
+                            Shelter shelter = g.fromJson(aShelter, Shelter.class);
+                            Model.getInstance().setShelterById(shelter.getKey(), shelter);
+                        }
+                    }
+                }
+
+//                System.out.println("Shelter from array: " + Model.getShelters());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

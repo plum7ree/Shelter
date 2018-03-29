@@ -52,7 +52,8 @@ public class ShelterDetailActivity extends AppCompatActivity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
+        if (true) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.  Pass the course info to
             //the fragment

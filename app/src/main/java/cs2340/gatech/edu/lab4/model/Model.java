@@ -107,6 +107,13 @@ public class Model {
         }
 
     }
+    public static void updateBedsAvailable(Shelter currentShelter) {
+        for (Shelter shelter:_shelters
+             ) {
+            System.out.println("Shelter Name:" + shelter.getName() + " Beds Available: " + shelter.getAvailableBeds());
+
+        }
+    }
 
     public static ArrayList<Shelter> getShelters() {
         return _shelters;
@@ -128,5 +135,13 @@ public class Model {
         }
         return theNullShelter;
     }
+    public void setShelterById(int id, Shelter newShelter) {
+        for (int i = 0; i < _shelters.size(); i++) {
+            if (_shelters.get(i).getKey() == id) {
+                _shelters.set(i, newShelter);
+            }
+        }
+    }
+
 
 }
