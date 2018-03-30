@@ -120,7 +120,7 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         /**
          * Make the adapter
          */
-        CustomInfoWindowAdapter(){
+        CustomInfoWindowAdapter() {
             // hook up the custom layout view in res/custom_map_pin_layout.xml
             myContentsView = getLayoutInflater().inflate(R.layout.custom_map_pin_layout, null);
         }
@@ -128,9 +128,9 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         @Override
         public View getInfoContents(Marker marker) {
 
-            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.title));
             tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.snippet));
             tvSnippet.setText(marker.getSnippet());
 
             return myContentsView;
@@ -143,53 +143,5 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         }
 
     }
-    /**
-     * Option Menu will be created on toolbar
-     * @param menu
-     * @return
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.map_list_options, menu);
-//
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-//        SearchView searchView =
-//                (SearchView) searchItem.getActionView();
-//
-//        // Configure the search info and add any event listeners...
 
-        return super.onCreateOptionsMenu(menu);
-    }
-    /**
-     * This method handle when a item from menu is chosen.
-     * When each menu is chosen, a window pop-up as a new Activity.
-     * Pop-up window
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.search:
-                mMap.clear();
-                //DataManager.theData = null;
-                Intent myIntent = new Intent(getApplicationContext(), ShelterSearchPopup.class);
-                myIntent.putExtra(ARG_GENDER,currentGenderSearchOption);
-                myIntent.putExtra(ARG_AGE, currentAgeSearchOption);
-                startActivity(myIntent);
-                return true;
-
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
-    /*@Override
-    public void onBackPressed() {
-        mMap.clear();
-
-    }*/
 }
