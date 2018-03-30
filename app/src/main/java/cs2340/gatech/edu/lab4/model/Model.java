@@ -17,7 +17,7 @@ public class Model {
     private static ArrayList<Shelter> _shelters = new ArrayList<>();
     private static int _numAccounts = _accounts.size();
     private Shelter _currentShelter;
-    private final Shelter theNullShelter = new Shelter(0,"no such shelter","capacity","restriction",0,0,"address","note","phone");
+    private final Shelter theNullShelter = new Shelter(0,"no such shelter","capacity",0,"restriction",0,0,"address","note","phone");
 
     public static ArrayList getAccountList() {
         return _accounts;
@@ -74,7 +74,7 @@ public class Model {
         return false;
     }
 
-    public static void addShelter(int key, String name, String cap, String restr, float longi, float lati, String addr, String note, String phoneNum) {
+    public static void addShelter(int key, String name, String cap,int aBed, String restr, float longi, float lati, String addr, String note, String phoneNum) {
         boolean shelterFound = false;
         if (!_shelters.isEmpty()) {
             for (Shelter shelter: _shelters) {
@@ -83,10 +83,10 @@ public class Model {
                 }
             }
             if (!shelterFound) {
-                _shelters.add(new Shelter(key,name,cap,restr,longi,lati,addr,note,phoneNum));
+                _shelters.add(new Shelter(key, name, cap, aBed, restr,longi,lati,addr,note,phoneNum));
             }
         } else {
-            _shelters.add(new Shelter(key,name,cap,restr,longi,lati,addr,note,phoneNum));
+            _shelters.add(new Shelter(key, name, cap, aBed, restr,longi,lati,addr,note,phoneNum));
         }
 
     }
@@ -106,6 +106,13 @@ public class Model {
             _shelters.add(newShelter);
         }
 
+    }
+    public static void updateBedsAvailable(Shelter currentShelter) {
+        for (Shelter shelter:_shelters
+             ) {
+            System.out.println("Shelter Name:" + shelter.getName() + " Beds Available: " + shelter.getAvailableBeds());
+
+        }
     }
 
     public static ArrayList<Shelter> getShelters() {
@@ -128,5 +135,13 @@ public class Model {
         }
         return theNullShelter;
     }
+    public void setShelterById(int id, Shelter newShelter) {
+        for (int i = 0; i < _shelters.size(); i++) {
+            if (_shelters.get(i).getKey() == id) {
+                _shelters.set(i, newShelter);
+            }
+        }
+    }
+
 
 }

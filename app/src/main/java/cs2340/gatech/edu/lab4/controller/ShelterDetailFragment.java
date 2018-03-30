@@ -5,11 +5,9 @@ package cs2340.gatech.edu.lab4.controller;
  */
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,12 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cs2340.gatech.edu.lab4.model.Shelter;
-import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.Model;
+import cs2340.gatech.edu.lab4.model.Shelter;
 
 /**
  * A fragment representing a single Course detail screen.
@@ -51,7 +48,8 @@ public class ShelterDetailFragment extends Fragment {
      * The adapter for the recycle view list of shelter details
      */
     private SimpleDetailsRecyclerViewAdapter adapter;
-
+    private List<String> shelterDetailList;
+    private List<String> shelterHeaderList;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -74,8 +72,11 @@ public class ShelterDetailFragment extends Fragment {
                 mShelter.setDetails();
                 mShelter.setHeaders();
             }
-            Log.d("CourseDetailFragment", "Passing over shelter: " + mShelter);
-            Log.d("CourseDetailFragment", "Address: " + mShelter.getAddress());
+            shelterDetailList = mShelter.getDetails();
+            shelterHeaderList = mShelter.getHeaders();
+            Log.d("#CourseDetailFragment", "Shelter vacancy: " + mShelter.getAvailableBeds());
+//            Log.d("CourseDetailFragment", "Passing over shelter: " + mShelter);
+//            Log.d("CourseDetailFragment", "Address: " + mShelter.getAddress());
 
             Activity activity = this.getActivity();
 
@@ -84,6 +85,7 @@ public class ShelterDetailFragment extends Fragment {
                 appBarLayout.setTitle(mShelter.toString());
             }
         }
+
 
     }
 
@@ -104,6 +106,16 @@ public class ShelterDetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        Model model = Model.getInstance();
+        // mShelter = model.getCourseById(getArguments().getInt(ARG_COURSE_ID));
+        mShelter = model.getCurrentShelter();
+        mShelter.setDetails();
+        mShelter.setHeaders();
+        shelterDetailList = mShelter.getDetails();
+        shelterHeaderList = mShelter.getHeaders();
+        adapter.updateData(shelterDetailList);
+        Log.d("############", "Details : " + mShelter.getAvailableBeds());
         adapter.notifyDataSetChanged();
     }
 
@@ -113,7 +125,7 @@ public class ShelterDetailFragment extends Fragment {
      * @param recyclerView  the view that needs this adapter
      */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        adapter = new SimpleDetailsRecyclerViewAdapter(mShelter.getDetails(),mShelter.getHeaders());
+        adapter = new SimpleDetailsRecyclerViewAdapter(shelterDetailList,shelterHeaderList);
         Log.d("Adapter", adapter.toString());
         recyclerView.setAdapter(adapter);
     }
@@ -130,8 +142,12 @@ public class ShelterDetailFragment extends Fragment {
         /**
          * Collection of the items to be shown in this list.
          */
-        private final List<String> mValues;
+        private List<String> mValues;
         private final List<String> mHeaders;
+
+        public void updateData(List<String> items) {
+            mValues = items;
+        }
 
         /**
          * set the items to be used by the adapter
@@ -198,6 +214,10 @@ public class ShelterDetailFragment extends Fragment {
             public String toString() {
                 return super.toString() + " '" + mContentView.getText() + "'";
             }
+        }
+
+        public void setDetails(List<String> items) {
+            mValues = items;
         }
     }
 }
