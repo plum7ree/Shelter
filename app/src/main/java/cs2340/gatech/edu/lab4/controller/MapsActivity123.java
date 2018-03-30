@@ -1,8 +1,11 @@
 package cs2340.gatech.edu.lab4.controller;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,10 +20,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
+import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
+import cs2340.gatech.edu.lab4.model.Shelter;
 
 public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    private static GoogleMap mMap;
+    private boolean mTwoPane;
+    public static final String ARG_GENDER = "gender";
+    public static Gender currentGenderSearchOption = Gender.ALL;
+    public static final String ARG_AGE = "age";
+    public static Age currentAgeSearchOption = Age.ALL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +60,9 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         mMap = googleMap;
 
 
+
         //reference to our GRASP Controller interface to the model
-        final DataServiceFacade dataService = DataServiceFacade.getInstance();
+        final SearchController dataService = SearchController.getInstance();
 
         // Setting a click event handler for the map
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -82,19 +94,19 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         });
 
         //get the data to display
-        List<DataElement> dataList = dataService.getData();
+        List<Shelter> dataList = dataService.getSearchResult();
 
         //iterate through the list and add a pin for each element in the model
-        for (DataElement de : dataList) {
+        for (Shelter de : dataList) {
             LatLng loc = new LatLng(de.getLatitude(), de.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(de.getDescription()));
+            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(""));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
         //Use a custom layout for the pin data
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
-    public GoogleMap getMap() {
+    public static GoogleMap getMap() {
         return mMap;
     }
 
@@ -131,4 +143,53 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         }
 
     }
+    /**
+     * Option Menu will be created on toolbar
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.map_list_options, menu);
+//
+//        MenuItem searchItem = menu.findItem(R.id.action_search);
+//        SearchView searchView =
+//                (SearchView) searchItem.getActionView();
+//
+//        // Configure the search info and add any event listeners...
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    /**
+     * This method handle when a item from menu is chosen.
+     * When each menu is chosen, a window pop-up as a new Activity.
+     * Pop-up window
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                mMap.clear();
+                //DataManager.theData = null;
+                Intent myIntent = new Intent(getApplicationContext(), ShelterSearchPopup.class);
+                myIntent.putExtra(ARG_GENDER,currentGenderSearchOption);
+                myIntent.putExtra(ARG_AGE, currentAgeSearchOption);
+                startActivity(myIntent);
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+    /*@Override
+    public void onBackPressed() {
+        mMap.clear();
+
+    }*/
 }

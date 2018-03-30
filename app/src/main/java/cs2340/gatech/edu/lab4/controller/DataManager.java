@@ -19,7 +19,7 @@ import cs2340.gatech.edu.lab4.model.Shelter;
  */
 
 class DataManager {
-    List<DataElement> theData;
+    public static List<DataElement> theData;
     ArrayList<Shelter> searchResults;
     SearchController sc;
 
