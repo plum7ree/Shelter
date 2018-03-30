@@ -60,4 +60,15 @@
         app:layout_anchorGravity="top|end"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/omw"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="10dp"
+        app:layout_anchor="@+id/course_detail_container"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteY="19dp" />
+
 </android.support.design.widget.CoordinatorLayout>

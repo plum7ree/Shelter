@@ -14,6 +14,8 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.R;
@@ -36,6 +38,17 @@ public class ShelterDetailActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton omw = (FloatingActionButton) findViewById(R.id.omw);
+        omw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ShelterOmwPopup.class);
+                startActivity(intent);
+
+
+            }
+        });
+
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
@@ -73,7 +86,7 @@ public class ShelterDetailActivity extends AppCompatActivity {
     public void onReserveClick(View view) {
         Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
         startActivity(intent);
-    }
+}
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
