@@ -20,6 +20,7 @@ public class SearchController {
     private static SearchController _instance = new SearchController();
 
 
+
     private SearchController() {
     }
 

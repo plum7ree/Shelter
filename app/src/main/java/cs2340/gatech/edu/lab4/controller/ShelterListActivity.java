@@ -130,6 +130,14 @@ public class ShelterListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                return true;
+
+            case R.id.map:
+                Intent mapIntent = new Intent(getApplicationContext(), MapsActivity123.class);
+                mapIntent.putExtra(ARG_GENDER,currentGenderSearchOption);
+                mapIntent.putExtra(ARG_AGE, currentAgeSearchOption);
+                startActivity(mapIntent);
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
