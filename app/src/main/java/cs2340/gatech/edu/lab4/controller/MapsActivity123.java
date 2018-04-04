@@ -99,7 +99,7 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
         //iterate through the list and add a pin for each element in the model
         for (Shelter de : dataList) {
             LatLng loc = new LatLng(de.getLatitude(), de.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(""));
+            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(de.getPhoneNumber()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 

@@ -14,7 +14,7 @@
 
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" />
+        android:required="true" />git
 
     <application
         android:allowBackup="true"
@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC4BFhzbxXCM71Q4BN8ZKg8kIP9jVU84sw" />
+            android:value="AIzaSyAZ_7rya8k6EM4QhVxFmk0I3x_54LLBh0w" />
         <meta-data
             android:name="com.google.android.gms.12.0.0"
             android:value="play-services-games:12.0.0" />
