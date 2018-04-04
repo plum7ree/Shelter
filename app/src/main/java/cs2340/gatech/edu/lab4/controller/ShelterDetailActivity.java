@@ -48,8 +48,6 @@ public class ShelterDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -80,13 +78,11 @@ public class ShelterDetailActivity extends AppCompatActivity {
                     .add(R.id.course_detail_container, fragment)
                     .commit();
         }
-
-
     }
     public void onReserveClick(View view) {
         Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
         startActivity(intent);
-}
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -102,6 +98,5 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
 
