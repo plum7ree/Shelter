@@ -40,6 +40,8 @@ public class Shelter {
 
     private List<String> _headers;
 
+    /**the number of beds available to claim*/
+    private int availableBeds;
     /******************************
      * Getters
      */
@@ -74,6 +76,7 @@ public class Shelter {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+    public int getAvailableBeds() {return availableBeds;}
     public void setDetails() {
         _details = new ArrayList<>();
         _details.add(shelterName);
@@ -81,6 +84,7 @@ public class Shelter {
         _details.add(address);
         _details.add(specialNotes);
         _details.add(phoneNumber);
+        _details.add(Integer.toString(availableBeds));
     }
     public void setHeaders() {
         _headers = new ArrayList<>();
@@ -89,9 +93,10 @@ public class Shelter {
         _headers.add("Address:");
         _headers.add("Notes:");
         _headers.add("Phone Number:");
+        _headers.add("Beds Available: ");
 
     }
-    public Shelter(int key, String name, String cap, String restr, float longi, float lati, String addr, String note, String phoneNum) {
+    public Shelter(int key, String name, String cap, int  aBed, String restr, float longi, float lati, String addr, String note, String phoneNum) {
         uniqueKey = key;
         shelterName = name;
         capacity = cap;
@@ -101,9 +106,13 @@ public class Shelter {
         address = addr;
         specialNotes = note;
         phoneNumber = phoneNum;
+        availableBeds = aBed;
     }
     public Shelter() {
 
+    }
+    public void setAvailableBeds(int beds) {
+        availableBeds = beds;
     }
 
     public String toString() {

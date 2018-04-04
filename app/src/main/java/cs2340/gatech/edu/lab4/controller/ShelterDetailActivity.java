@@ -48,8 +48,6 @@ public class ShelterDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -65,7 +63,8 @@ public class ShelterDetailActivity extends AppCompatActivity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
+        if (true) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.  Pass the course info to
             //the fragment
@@ -79,11 +78,11 @@ public class ShelterDetailActivity extends AppCompatActivity {
                     .add(R.id.course_detail_container, fragment)
                     .commit();
         }
-
-
     }
-
-
+    public void onReserveClick(View view) {
+        Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
+        startActivity(intent);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
