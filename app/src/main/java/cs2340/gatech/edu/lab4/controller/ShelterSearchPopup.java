@@ -1,7 +1,6 @@
 package cs2340.gatech.edu.lab4.controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +9,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cs2340.gatech.edu.lab4.R;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
-import cs2340.gatech.edu.lab4.model.Shelter;
 
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_AGE;
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_GENDER;
@@ -39,7 +33,7 @@ public class ShelterSearchPopup extends Activity {
     private static List<Gender> genderCategory = Arrays.asList(Gender.ALL, Gender.MALE,Gender.FEMALE);
     private static List<Age> ageCategory = Arrays.asList(Age.ALL, Age.CHILDREN, Age.NEWBORN, Age.YOUNG_ADULTS);
     static SearchController sc = SearchController.getInstance();
-    private static GoogleMap mMap;
+//    private static GoogleMap mMap;
 
 
     private Spinner genderSpinner;
@@ -77,56 +71,56 @@ public class ShelterSearchPopup extends Activity {
         currentAgeSearchOption = (Age) ageSpinner.getSelectedItem();
         sc.search(searchBar.getText().toString(), (Gender)genderSpinner.getSelectedItem(), (Age)ageSpinner.getSelectedItem());
 
-        //save the map instance returned from Google
-        mMap = MapsActivity123.getMap();
-
-
-
-        //reference to our GRASP Controller interface to the model
-        final DataServiceFacade dataService = DataServiceFacade.getInstance();
-
-        // Setting a click event handler for the map
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-            @Override
-            public void onMapClick(LatLng latLng) {
-
-                // Creating a marker
-                MarkerOptions markerOptions = new MarkerOptions();
-
-                // Setting the position for the marker
-                markerOptions.position(latLng);
-
-                //add a new item where the touch happened, for non-hardcoded data, we would need
-                //to launch an activity with a form to enter the data.
-                //dataService.addDataElement("newly added", "Bobs Place", new Location(latLng.latitude, latLng.longitude));
-
-                // Setting the title for the marker.
-                // This will be displayed on taping the marker
-                //markerOptions.title(dataService.getLastElementAdded().getName());
-                //markerOptions.snippet(dataService.getLastElementAdded().getDescription());
-
-                // Animating to the touched position
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-
-                // Placing a marker on the touched position
-                //mMap.addMarker(markerOptions);
-
-            }
-        });
-
-        //get the data to display
-        List<DataElement> dataList = dataService.getData();
-
-        //iterate through the list and add a pin for each element in the model
-        for (DataElement de : dataList) {
-            LatLng loc = new LatLng(de.getLatitude(), de.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(de.getDescription()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-        }
-
-        //Use a custom layout for the pin data
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+//        //save the map instance returned from Google
+//        mMap = MapsActivity123.getMap();
+//
+//
+//
+//        //reference to our GRASP Controller interface to the model
+//        final DataServiceFacade dataService = DataServiceFacade.getInstance();
+//
+//        // Setting a click event handler for the map
+//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//
+//            @Override
+//            public void onMapClick(LatLng latLng) {
+//
+//                // Creating a marker
+//                MarkerOptions markerOptions = new MarkerOptions();
+//
+//                // Setting the position for the marker
+//                markerOptions.position(latLng);
+//
+//                //add a new item where the touch happened, for non-hardcoded data, we would need
+//                //to launch an activity with a form to enter the data.
+//                //dataService.addDataElement("newly added", "Bobs Place", new Location(latLng.latitude, latLng.longitude));
+//
+//                // Setting the title for the marker.
+//                // This will be displayed on taping the marker
+//                //markerOptions.title(dataService.getLastElementAdded().getName());
+//                //markerOptions.snippet(dataService.getLastElementAdded().getDescription());
+//
+//                // Animating to the touched position
+//                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//
+//                // Placing a marker on the touched position
+//                //mMap.addMarker(markerOptions);
+//
+//            }
+//        });
+//
+//        //get the data to display
+//        List<DataElement> dataList = dataService.getData();
+//
+//        //iterate through the list and add a pin for each element in the model
+//        for (DataElement de : dataList) {
+//            LatLng loc = new LatLng(de.getLatitude(), de.getLongitude());
+//            mMap.addMarker(new MarkerOptions().position(loc).title(de.getName()).snippet(de.getDescription()));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+//        }
+//
+//        //Use a custom layout for the pin data
+//        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         finish();
     }
 

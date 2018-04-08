@@ -3,21 +3,14 @@ package cs2340.gatech.edu.lab4.controller;
 /**
  * Created by mike on 2/22/18.
  */
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
 
-import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.R;
 
 /**
@@ -34,20 +27,7 @@ public class ShelterDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter_detail);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-//        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        FloatingActionButton omw = (FloatingActionButton) findViewById(R.id.omw);
-        omw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), ShelterOmwPopup.class);
-                startActivity(intent);
-
-
-            }
-        });
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

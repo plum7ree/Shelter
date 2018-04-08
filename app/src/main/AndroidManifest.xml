@@ -45,6 +45,10 @@
             android:name=".controller.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".controller.ReserveActivity" />
+        <activity android:name=".controller.OnMyWayActivity"></activity>
+
+
         <activity
             android:name=".controller.ShelterListActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
@@ -58,6 +62,8 @@
         <activity
             android:name=".controller.MapsActivity123"
             android:label="@string/title_activity_maps123"></activity>
+
+        <activity android:name=".controller.ShelterOmwPopup"></activity>
     </application>
 
 </manifest>
