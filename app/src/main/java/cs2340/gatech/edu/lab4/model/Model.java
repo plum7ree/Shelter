@@ -2,13 +2,10 @@ package cs2340.gatech.edu.lab4.model;
 
 import java.util.ArrayList;
 
-import cs2340.gatech.edu.lab4.controller.FirebaseController;
-
 
 public class Model {
     private static final Model _instance = new Model();
     public static Model getInstance() { return _instance;}
-    static FirebaseController controller = FirebaseController.getInstance();
 
     private Model() {
 
@@ -51,8 +48,6 @@ public class Model {
     public static void addNewAccount(String user, String pass, AccountType type) {
         _accounts.add(new Account(user,pass,type));
         updateNumAccounts();
-        String id = String.valueOf(_numAccounts - 1);
-        FirebaseController.postAccount(id,user,pass,type);
 
     }
 
@@ -65,9 +60,8 @@ public class Model {
     public static boolean isValidUserAndPassword(String user, String password) {
         user = user.replaceAll("\\s", "");
         for (Object a : getAccountList()) {
-                System.out.println("account from array" + a);
-                if(((Account)a).getUsername().equals(user)
-                        && ((Account)a).getPassword().equals(password)) { return true;}
+            if(((Account)a).getUsername().equals(user)
+                    && ((Account)a).getPassword().equals(password)) { return true;}
 
 
         }
@@ -109,7 +103,7 @@ public class Model {
     }
     public static void updateBedsAvailable(Shelter currentShelter) {
         for (Shelter shelter:_shelters
-             ) {
+                ) {
             System.out.println("Shelter Name:" + shelter.getName() + " Beds Available: " + shelter.getAvailableBeds());
 
         }

@@ -59,8 +59,14 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if(!isUserExists(username.getText().toString())) {
             if(isValidPassword(password.getText().toString(), confirmPassword.getText().toString())) {
-                Model.addNewAccount(username.getText().toString(),password.getText().toString(),
-                        (AccountType) accountTypeSpinner.getSelectedItem());
+                //I had to implement these codes here, not in model class, bc of JUnit test (if firebasecontroller is imported
+                // in model class, cannot test Model class with JUnit.)
+                String id = String.valueOf(Model.getAccountList().size());
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                AccountType type = (AccountType) accountTypeSpinner.getSelectedItem();
+                FirebaseController.postAccount(id,user,pass,type);
+                Model.addNewAccount(user,pass,type);
                 finish();
             }
             else {
