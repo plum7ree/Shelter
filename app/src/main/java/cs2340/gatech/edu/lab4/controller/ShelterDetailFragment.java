@@ -136,6 +136,7 @@ public class ShelterDetailFragment extends Fragment {
      *
      * In this case, we are just mapping the toString of the shelter details string object to a text field.
      */
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
     public class SimpleDetailsRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleDetailsRecyclerViewAdapter.ViewHolder> {
 

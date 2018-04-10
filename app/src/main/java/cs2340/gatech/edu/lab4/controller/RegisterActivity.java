@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     /**
      * Check if user exists in ArrayList accounts in Model class.
-     * if any account of ArrayList has same username from paramter str, return true
+     * if any account of ArrayList has same username from parameter str, return true
      * @param str
      * @return
      */
@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /**
-     * Check password and confim_password is same
+     * Check password and confirm_password is same
      * @param pass
      * @param confirm_pass
      * @return

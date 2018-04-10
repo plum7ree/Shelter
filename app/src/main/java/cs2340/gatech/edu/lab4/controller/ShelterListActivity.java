@@ -162,6 +162,7 @@ public class ShelterListActivity extends AppCompatActivity {
      *
      * In this case, we are just mapping the toString of the Course object to a text field.
      */
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
     public class SimpleCourseRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleCourseRecyclerViewAdapter.ViewHolder> {
 

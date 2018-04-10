@@ -79,7 +79,7 @@ public class FirebaseController {
     public static void updateAvailableBeds(Shelter currentShelter, int availableBeds) {
         String strBeds = "" + availableBeds;
         int key = currentShelter.getKey();
-        Log.d("E", "--------shleter is " + currentShelter.toString() + ",  key is " + key + ", new beds: "+strBeds);
+        Log.d("E", "--------shelter is " + currentShelter.toString() + ",  key is " + key + ", new beds: "+strBeds);
         myRef.child("shelters/" + key + "/availableBeds").setValue(availableBeds);
 
     }

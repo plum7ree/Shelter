@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs2340.gatech.edu.lab4.R;
 import cs2340.gatech.edu.lab4.model.Model;
@@ -59,7 +60,7 @@ public class SearchController {
     }
 
     private void filterByRestriction(Gender pg, Age pa) {
-        ArrayList<Shelter> temp = new ArrayList<>();
+        List<Shelter> temp = new ArrayList<>();
         //filter Model.getShelter by pg
         if(!pg.equals(Gender.ALL)){
             for (Shelter s : Model.getShelters()) { //Here Model
@@ -77,7 +78,7 @@ public class SearchController {
         //filter "temp" by pa, and store to _searchResult
         if(!pa.equals(Age.ALL)) {
             for (Shelter s : temp) {                //Here temp!!!
-                ArrayList<Age> arr = findAgeOfThis(s);
+                Iterable<Age> arr = findAgeOfThis(s);
                 for(Age a : arr) {
                     if(pa.equals(a) || a.equals(Age.ALL)) {
                         Log.d("Edit", "pa : " + pg.toString() + ",,,a: " + a.toString());
@@ -129,7 +130,7 @@ public class SearchController {
         r_shelter = r_shelter.trim().toLowerCase(); //
         for(Age g: Age.values()) {
             Log.d("Edit","r : " + r_shelter + "contains :" + g.toString().toLowerCase());
-            if (r_shelter.contains(g.toString().toLowerCase())) { // ex)  "Families w/ chilren under 5" contains "children"?
+            if (r_shelter.contains(g.toString().toLowerCase())) { // ex)  "Families w/ children under 5" contains "children"?
                 Log.d("Edit","r : " + r_shelter + "contains :" + g.toString().toLowerCase());
                 ret = Age.getEnum(g.toString());
                 retArr.add(ret);
@@ -138,7 +139,7 @@ public class SearchController {
 
         Log.d("Edit","Age ret:    " + ret.toString());
 //        if (retArr.size() == 0) {
-//            // if shleter has no restriction for age, then add Age.ALL("Anyone")
+//            // if shelter has no restriction for age, then add Age.ALL("Anyone")
 //            // but this code can cause the situation like this:
 //            // A Shelter which has only gender restriction "Men" can be popped after filter by "Newborns"
 //            retArr.add(Age.ALL);

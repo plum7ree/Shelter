@@ -19,7 +19,7 @@ public class Model {
     private Shelter _currentShelter;
     private final Shelter theNullShelter = new Shelter(0,"no such shelter","capacity",0,"restriction",0,0,"address","note","phone");
 
-    public static ArrayList getAccountList() {
+    public static Iterable getAccountList() {
         return _accounts;
     }
 

@@ -77,7 +77,7 @@ public class MapShelterSearch extends Activity {
         finish();
     }
 
-    public void onCancelPressed(View veiw) {
+    public void onCancelPressed(View view) {
         finish();
     }
 
