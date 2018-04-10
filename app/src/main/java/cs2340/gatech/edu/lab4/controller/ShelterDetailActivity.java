@@ -22,7 +22,10 @@ import cs2340.gatech.edu.lab4.R;
  * Here we need to display a list of shelter details.
  */
 public class ShelterDetailActivity extends AppCompatActivity {
-
+    /**
+     * Sets up for detailed view of a shelter
+     * @param savedInstanceState past instance if still available
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +62,21 @@ public class ShelterDetailActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+    /**
+     * Triggers the reservation function
+     * @param view current view
+     */
     public void onReserveClick(View view) {
         Intent intent = new Intent(getBaseContext(), ReserveActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * implements selection of possible options
+     * @param item the option selected
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

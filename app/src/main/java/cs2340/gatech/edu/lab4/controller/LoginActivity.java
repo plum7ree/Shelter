@@ -19,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
     public static final String ARG_PASSWORD_ID = "password_id";
 
     @Override
+    /**
+     * Sets up entry fields and view
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -27,6 +30,10 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_field);
     }
 
+    /**
+     * When login is pressed, triggers user validation
+     * @param view Current view of app
+     */
     public void onLoginPressed(View view) {
         if(Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
             Intent intent = new Intent(getBaseContext(), ShelterListActivity.class);
@@ -38,6 +45,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * returns user to start screen if cancel is pressed
+     * @param view Current app view
+     */
     public void onCancelPressed(View view) {
         finish();
     }

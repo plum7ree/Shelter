@@ -96,6 +96,20 @@ public class Shelter {
         _headers.add("Beds Available: ");
 
     }
+
+    /**
+     * Constructor for Shelter object
+     * @param key unique shelter id
+     * @param name name of shelter
+     * @param cap capacity (e.g. total available beds)
+     * @param aBed number of beds currently available
+     * @param restr restrictions (gender, age)
+     * @param longi longitudinal information
+     * @param lati latitudinal information
+     * @param addr shelter address
+     * @param note note on the shelter
+     * @param phoneNum shelter contact phone
+     */
     public Shelter(int key, String name, String cap, int  aBed, String restr, float longi, float lati, String addr, String note, String phoneNum) {
         uniqueKey = key;
         shelterName = name;
@@ -119,6 +133,11 @@ public class Shelter {
         return shelterName;
     }
 
+    /**
+     * Checks if two shelters are the same one
+     * @param s shelter being compared to
+     * @return true if they're the same, false otherwise
+     */
     public boolean equals(Shelter s) {
         if(!(s instanceof Shelter)) {
             return false;

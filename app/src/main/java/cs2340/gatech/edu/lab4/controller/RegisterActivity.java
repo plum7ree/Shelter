@@ -90,8 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     /**
      * Check for invalid username such as empty space " "
-     * @param str
-     * @return
+     * @param str username entered
+     * @return  if the username is correct or not
      */
     private boolean isUsernameWrong(String str) {
         return str.replaceAll("\\s+","").equals("");
@@ -99,9 +99,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     /**
      * Check password and confirm_password is same
-     * @param pass
-     * @param confirm_pass
-     * @return
+     * @param pass password entered
+     * @param confirm_pass password confirmation
+     * @return if the password matches the confirmation
      */
     private boolean isValidPassword(String pass, String confirm_pass) {
         return pass.equals(confirm_pass);

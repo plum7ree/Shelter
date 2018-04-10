@@ -19,10 +19,18 @@ public class Model {
     private Shelter _currentShelter;
     private final Shelter theNullShelter = new Shelter(0,"no such shelter","capacity",0,"restriction",0,0,"address","note","phone");
 
+    /**
+     * Getter for AccountList
+     * @return
+     */
     public static Iterable getAccountList() {
         return _accounts;
     }
 
+    /**
+     * Iterates over accounts finding users, returns result
+     * @return ArrayList of users
+     */
     public static ArrayList getUserList() {
         ArrayList<Account> result = new ArrayList<Account>();
         for(Account a: _accounts) {
@@ -33,6 +41,10 @@ public class Model {
         return result;
     }
 
+    /**
+     * Iterates over accounts and returns ArrayList of admins
+     * @return
+     */
     public static ArrayList getAdminList() {
         ArrayList<Account> result = new ArrayList<Account>();
         for(Account a: _accounts) {
@@ -43,11 +55,21 @@ public class Model {
         return result;
     }
 
+    /**
+     * Updates the number of accounts from database
+     * @param a
+     */
     public static void getAccountsFromDatabase(Account a){
         _accounts.add(a);
         updateNumAccounts();
     }
 
+    /**
+     * Adds new account using information entered, uses post to push to database
+     * @param user username
+     * @param pass password
+     * @param type  admin or user account type
+     */
     public static void addNewAccount(String user, String pass, AccountType type) {
         _accounts.add(new Account(user,pass,type));
         updateNumAccounts();
@@ -58,8 +80,8 @@ public class Model {
 
     /**
      * This method is called in LoginActivity searching username and password are in the ArrayList
-     * @param user
-     * @param password
+     * @param user username
+     * @param password password
      * @return
      */
     public static boolean isValidUserAndPassword(String user, String password) {
@@ -74,6 +96,19 @@ public class Model {
         return false;
     }
 
+    /**
+     * Add new shelter with information in parameters
+     * @param key
+     * @param name name of shelter
+     * @param cap total capacity
+     * @param aBed number of available beds
+     * @param restr shelter restrictions
+     * @param longi longitude info
+     * @param lati latitude info
+     * @param addr address of the shelter
+     * @param note notes
+     * @param phoneNum shelter contact number
+     */
     public static void addShelter(int key, String name, String cap,int aBed, String restr, float longi, float lati, String addr, String note, String phoneNum) {
         boolean shelterFound = false;
         if (!_shelters.isEmpty()) {
@@ -90,6 +125,11 @@ public class Model {
         }
 
     }
+
+    /**
+     * Add new shelter with a shelter object
+     * @param newShelter Shelter to be added
+     */
     public static void addShelter(Shelter newShelter) {
         boolean shelterFound = false;
         if (!_shelters.isEmpty()) {
@@ -107,6 +147,11 @@ public class Model {
         }
 
     }
+
+    /**
+     * Iterates through shelter list updating amount of beds
+     * @param currentShelter
+     */
     public static void updateBedsAvailable(Shelter currentShelter) {
         for (Shelter shelter:_shelters
              ) {
@@ -127,6 +172,12 @@ public class Model {
     public void setCurrentShelter(Shelter shelter) {
         _currentShelter = shelter;
     }
+
+    /**
+     * Shelter getter
+     * @param id id of shelter being found
+     * @return shelter of id entered or null
+     */
     public Shelter getShelterById(int id) {
         for (Shelter s: _shelters) {
             if (s.getKey() == id) {
@@ -135,6 +186,12 @@ public class Model {
         }
         return theNullShelter;
     }
+
+    /**
+     * Shelter setter
+     * @param id shelter's id
+     * @param newShelter shelter to replace current id
+     */
     public void setShelterById(int id, Shelter newShelter) {
         for (int i = 0; i < _shelters.size(); i++) {
             if (_shelters.get(i).getKey() == id) {

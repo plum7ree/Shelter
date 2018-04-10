@@ -246,6 +246,10 @@ public class ShelterListActivity extends AppCompatActivity {
             });
         }
 
+        /**
+         * returns number of items in the list
+         * @return
+         */
         @Override
         public int getItemCount() {
             return mShelters.size();

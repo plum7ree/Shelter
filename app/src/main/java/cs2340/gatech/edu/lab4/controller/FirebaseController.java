@@ -24,11 +24,17 @@ public class FirebaseController {
     static FirebaseDatabase database;
     static DatabaseReference myRef;
 
+    /**
+     * Creates instance of firebase controller
+     */
     private FirebaseController() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
     }
 
+    /**
+     * Method called by applet to initialize variables, listeners, etc.
+     */
     public static void init() {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,11 +77,24 @@ public class FirebaseController {
         });
     }
 
+    /**
+     * Pushes new account with info from parameters into database
+     * @param id
+     * @param username
+     * @param password
+     * @param type
+     */
     public static void postAccount(String id, String username, String password, AccountType type) {
         Account a = new Account(username,password,type);
         myRef.child("accounts/" + id).setValue(a);
 
     }
+
+    /**
+     * Sets the amount of beds available for the current shelter.
+     * @param currentShelter The shelter whose availability is updated
+     * @param availableBeds The new amount of beds available.
+     */
     public static void updateAvailableBeds(Shelter currentShelter, int availableBeds) {
         String strBeds = "" + availableBeds;
         int key = currentShelter.getKey();
@@ -84,6 +103,9 @@ public class FirebaseController {
 
     }
 
+    /**
+     * Pushes updates from database into Model when changed
+     */
     public static void updateShelterListInModel() {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
