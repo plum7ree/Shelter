@@ -125,10 +125,19 @@ public class Shelter {
     public Shelter() {
 
     }
+
+    /**
+     * Setter for amount of beds available
+     * @param beds number of beds to update to
+     */
     public void setAvailableBeds(int beds) {
         availableBeds = beds;
     }
 
+    /**
+     * To string for shelter name
+     * @return name of shelter
+     */
     public String toString() {
         return shelterName;
     }

@@ -160,15 +160,33 @@ public class Model {
         }
     }
 
+    /**
+     * Getter for shelter list
+     * @return returns ArrayList of shelters
+     */
     public static ArrayList<Shelter> getShelters() {
         return _shelters;
     }
+
+    /**
+     *  Updates number of accounts to the current size of the account list
+     */
     private static void updateNumAccounts() {
         _numAccounts = _accounts.size();
     }
+
+    /**
+     * Getter for shelter
+     * @return current shelter
+     */
     public Shelter getCurrentShelter() {
         return _currentShelter;
     }
+
+    /**
+     * setter for current shelter
+     * @param shelter shelter to set
+     */
     public void setCurrentShelter(Shelter shelter) {
         _currentShelter = shelter;
     }
