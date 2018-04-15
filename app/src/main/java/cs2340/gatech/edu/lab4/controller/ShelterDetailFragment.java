@@ -57,6 +57,10 @@ public class ShelterDetailFragment extends Fragment {
     public ShelterDetailFragment() {
     }
 
+    /**
+     * Sets up detail fragment for shelter
+     * @param savedInstanceState prior state if available
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +93,13 @@ public class ShelterDetailFragment extends Fragment {
 
     }
 
+    /**
+     * Called after creation/instantiation of view hierarchy for fragment
+     * @param inflater layout inflater
+     * @param container ViewGroup object
+     * @param savedInstanceState prior state if available, can be NULL
+     * @return the View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,6 +114,9 @@ public class ShelterDetailFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Resumes the fragment
+     */
     @Override
     public void onResume() {
         super.onResume();

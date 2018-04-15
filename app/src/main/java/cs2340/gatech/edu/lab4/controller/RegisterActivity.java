@@ -21,7 +21,10 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView confirmPassword;
     private Spinner accountTypeSpinner;
 
-
+    /**
+     * Sets up register activity, creating fields for user account info
+     * @param savedInstanceState previous state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /**
-     * according to class,
+     * event listener for register, creates account for user after verifying information entered is
+     * valid and not already an account
      * @param view
      */
     public void onRegisterPressed(View view) {
@@ -73,6 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Event listener for cancel button, aborts registration action
+     * @param view
+     */
     public void onCancelPressed(View view) { finish();}
 
     /**

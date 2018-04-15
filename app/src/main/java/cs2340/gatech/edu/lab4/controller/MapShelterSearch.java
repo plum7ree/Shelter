@@ -44,6 +44,10 @@ public class MapShelterSearch extends Activity {
     private Spinner ageSpinner;
     private EditText searchBar;
 
+    /**
+     * Sets up map search, creates drop downs with options to narrow results
+     * @param savedInstanceState previous state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +74,10 @@ public class MapShelterSearch extends Activity {
         }
     }
 
+    /**
+     * Event listener for search, engages when the search button is pressed
+     * @param view current view
+     */
     public void onSearchPressed(View view) {
         currentGenderSearchOption = (Gender) genderSpinner.getSelectedItem();
         currentAgeSearchOption = (Age) ageSpinner.getSelectedItem();
@@ -77,6 +85,10 @@ public class MapShelterSearch extends Activity {
         finish();
     }
 
+    /**
+     * aborts search functionality if cancel is pressed
+     * @param view current view
+     */
     public void onCancelPressed(View view) {
         finish();
     }
@@ -91,6 +103,11 @@ public class MapShelterSearch extends Activity {
         }
         return 0;
     }
+
+    /**
+     *  Getter for SearchController
+     * @return the SearchController
+     */
     public static SearchController getSearchController(){
         return sc;
     }

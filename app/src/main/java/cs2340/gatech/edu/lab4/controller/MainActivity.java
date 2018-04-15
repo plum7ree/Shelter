@@ -8,7 +8,10 @@ import android.view.View;
 import cs2340.gatech.edu.lab4.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    /**
+     * Sets up main activity, initializes controller for Firebase
+     * @param savedInstanceState last saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,11 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *  Starts login activity
+     * @param view login view object
+     */
     public void login(View view){
         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts register activity
+     * @param view register view object
+     */
     public void register(View view){
         Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
         startActivity(intent);

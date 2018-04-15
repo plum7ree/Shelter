@@ -20,6 +20,10 @@ public class OnMyWayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_on_my_way);
     }
 
+    /**
+     * Event listener for cancel button, stops omw functionality if pressed
+     * @param view current view
+     */
     public void onCancelPressed(View view){
         shelter = Model.getInstance().getCurrentShelter();
         Log.d("##########", "current shelter vacancy: " + shelter.getAvailableBeds());
@@ -42,6 +46,11 @@ public class OnMyWayActivity extends AppCompatActivity {
         handler.postDelayed(startOnMyWayActivity, 3000);
 
     }
+
+    /**
+     * Event listener for arrived button user presses upon arriving at shelter
+     * @param view current view
+     */
     public void onArrivedPressed(View view) {
         Intent intent = new Intent(this, ShelterDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -33,6 +33,10 @@ public class MapsActivity123 extends AppCompatActivity implements OnMapReadyCall
     public static final String ARG_AGE = "age";
     public static Age currentAgeSearchOption = Age.ALL;
 
+    /**
+     * Sets up maps activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

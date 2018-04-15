@@ -22,6 +22,10 @@ import cs2340.gatech.edu.lab4.R;
  */
 
 public class MapController extends FragmentActivity implements OnMapReadyCallback {
+    /**
+     * Sets up map functionality, loads map fragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

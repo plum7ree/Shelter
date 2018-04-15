@@ -14,7 +14,7 @@ import android.view.View;
 import cs2340.gatech.edu.lab4.R;
 
 /**
- * An activity representing a single Course detail screen. This
+ * An activity representing a single Shelter detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link ShelterListActivity}.
@@ -75,7 +75,7 @@ public class ShelterDetailActivity extends AppCompatActivity {
     /**
      * implements selection of possible options
      * @param item the option selected
-     * @return
+     * @return boolean false to allow normal menu processing to proceed, true to consume it here.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

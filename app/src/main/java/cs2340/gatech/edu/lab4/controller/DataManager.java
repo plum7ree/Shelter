@@ -28,6 +28,9 @@ class DataManager {
         makeSomeData();
     }
 
+    /**
+     * Populates the shelter ArrayList with data elements
+     */
     private void makeSomeData() {
         sc = ShelterSearchPopup.getSearchController();
         searchResults = sc.getSearchResult();
@@ -41,11 +44,18 @@ class DataManager {
 
     }
 
+    /**
+     *  Puts DataElement structure in theData List
+     * @param de DataElement to be added
+     */
     void addReport(DataElement de) {
         theData.add(de);
     }
 
-
+    /**
+     * getter for element's data
+     * @return the data held by the DataElement
+     */
     List<DataElement> getData() { return theData; }
 
 

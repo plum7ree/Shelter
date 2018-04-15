@@ -25,7 +25,7 @@ import cs2340.gatech.edu.lab4.model.Shelter;
 /**
  * THIS IS OUR TOP_LEVEL WINDOW THAT THE USER FIRST SEES IN THE APPLICATION!
  *
- * An activity representing a list of Courses. This activity
+ * An activity representing a list of Shelters. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
  * lead to a {@link ShelterDetailActivity} representing
@@ -50,7 +50,10 @@ public class ShelterListActivity extends AppCompatActivity {
     private SimpleCourseRecyclerViewAdapter adapter;
 
 
-
+    /**
+     * Sets up list activity of shelters available
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,9 @@ public class ShelterListActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * continues activity after resume
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -93,8 +98,9 @@ public class ShelterListActivity extends AppCompatActivity {
 
     /**
      * Option Menu will be created on toolbar
-     * @param menu
-     * @return
+     * @param menu the menu to be created
+     * @return must return true for the menu to be displayed; if false it will not be shown.
+
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,8 +119,8 @@ public class ShelterListActivity extends AppCompatActivity {
      * This method handle when a item from menu is chosen.
      * When each menu is chosen, a window pop-up as a new Activity.
      * Pop-up window
-     * @param item
-     * @return
+     * @param item menu item being chosen
+     * @return  Return false to allow normal menu processing to proceed, true to consume it here.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -193,6 +199,11 @@ public class ShelterListActivity extends AppCompatActivity {
             return new ViewHolder(view);
         }
 
+        /**
+         * Matches list elements with correct views
+         * @param holder holds the view
+         * @param position place within list
+         */
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 
@@ -248,7 +259,7 @@ public class ShelterListActivity extends AppCompatActivity {
 
         /**
          * returns number of items in the list
-         * @return
+         * @return list size
          */
         @Override
         public int getItemCount() {

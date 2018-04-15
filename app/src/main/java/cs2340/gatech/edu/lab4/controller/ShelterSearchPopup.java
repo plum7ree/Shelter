@@ -40,6 +40,10 @@ public class ShelterSearchPopup extends Activity {
     private Spinner ageSpinner;
     private EditText searchBar;
 
+    /**
+     * Sets up shelter search popup with options, drop downs, etc.
+     * @param savedInstanceState prior state (possibly null)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,10 @@ public class ShelterSearchPopup extends Activity {
         }
     }
 
+    /**
+     * Event listener that engages search functionality
+     * @param view
+     */
     public void onSearchPressed(View view) {
         currentGenderSearchOption = (Gender) genderSpinner.getSelectedItem();
         currentAgeSearchOption = (Age) ageSpinner.getSelectedItem();
@@ -124,10 +132,19 @@ public class ShelterSearchPopup extends Activity {
         finish();
     }
 
+    /**
+     * aborts search functionality
+     * @param view current view
+     */
     public void onCancelPressed(View view) {
         finish();
     }
 
+    /**
+     * Finds location in gender enum
+     * @param code
+     * @return
+     */
     public static int findPosition(Enum code) {
         if(code instanceof Gender) {
             int i = 0;
@@ -138,6 +155,11 @@ public class ShelterSearchPopup extends Activity {
         }
         return 0;
     }
+
+    /**
+     * Getter for search controller
+     * @return SearchController sc
+     */
     public static SearchController getSearchController(){
         return sc;
     }

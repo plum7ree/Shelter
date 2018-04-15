@@ -28,6 +28,10 @@ public class ReserveActivity extends AppCompatActivity {
     private int numBeds;
     private int newNumBeds;
 
+    /**
+     * Sets up reserve activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +85,10 @@ public class ReserveActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Aborts reserve action
+     * @param view current view
+     */
     public void onCancelPressed(View view) {
         finish();
     }

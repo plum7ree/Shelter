@@ -33,11 +33,15 @@ public class ShelterOmwPopup extends Activity {
     public static final String ARG_COURSE_ID = "course_id";
 
     /**
-     * The course that this detail view is for.
+     * The shelter that this detail view is for.
      */
     private Shelter mShelter;
     Model model = Model.getInstance();
 
+    /**
+     * Sets up popup
+     * @param savedInstanceState prior state if available, possibly null
+     */
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shelter_omw_option_popup);

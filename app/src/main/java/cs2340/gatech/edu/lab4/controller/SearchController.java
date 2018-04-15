@@ -35,11 +35,15 @@ public class SearchController {
     private SearchController() {
     }
 
+    /**
+     * Getter for results of search
+     * @return the result of a search
+     */
     public ArrayList<Shelter> getSearchResult() { return _searchResult; }
     /**
-     *
-     * @param g
-     * @param a
+     * search that filters by shelter name, age required, and gender restrictions
+     * @param g gender restriction user needs
+     * @param a age restriction user needs
      */
     public void search(String searchStr, Gender g, Age a) {
         _searchResult.clear();
@@ -51,6 +55,10 @@ public class SearchController {
 
     }
 
+    /**
+     * Search without filtration, only using name
+     * @param searchStr name being searched
+     */
     private void searchName(String searchStr) {
         for (Shelter s: Model.getShelters()){
             if (s.getName().contains(searchStr)) {
@@ -59,6 +67,11 @@ public class SearchController {
         }
     }
 
+    /**
+     * Filters shelters based on age and gender restrictions
+     * @param pg gender being checked
+     * @param pa age being checked
+     */
     private void filterByRestriction(Gender pg, Age pa) {
         List<Shelter> temp = new ArrayList<>();
         //filter Model.getShelter by pg
@@ -98,8 +111,8 @@ public class SearchController {
      * gender restriction must be only one of ALL, MALE, FEMALE
      * str.equals method used.
      * return the Enum Gender of given shelter.
-     * @param s
-     * @return
+     * @param s Shelter being checked
+     * @return the genders allowed at Shelter s s
      */
     private Gender findGenderOfThis(Shelter s) {
         Gender ret = Gender.ALL;
@@ -120,8 +133,8 @@ public class SearchController {
     /**
      * Shelter can be combination of Newborn, Children, Young Adults so this method returns array
      * str.contains method used.
-     * @param s
-     * @return
+     * @param s the shelter being checked
+     * @return  ArrayList of acceptable ages for the shelter
      */
     private ArrayList<Age> findAgeOfThis(Shelter s) {
         ArrayList<Age> retArr = new ArrayList<>();
