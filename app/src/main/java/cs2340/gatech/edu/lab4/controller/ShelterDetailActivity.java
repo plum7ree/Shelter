@@ -1,23 +1,17 @@
 package cs2340.gatech.edu.lab4.controller;
 
-/**
+/*
  * Created by mike on 2/22/18.
  */
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.R;
 
 /**

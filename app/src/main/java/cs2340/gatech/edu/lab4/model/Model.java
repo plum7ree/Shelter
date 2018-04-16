@@ -13,7 +13,7 @@ public class Model {
     private Model() {
 
     }
-    private static ArrayList<Account> _accounts = new ArrayList<Account>();
+    private static ArrayList<Account> _accounts = new ArrayList<>();
     private static ArrayList<Shelter> _shelters = new ArrayList<>();
     private static int _numAccounts = _accounts.size();
     private Shelter _currentShelter;
@@ -24,7 +24,7 @@ public class Model {
     }
 
     public static ArrayList getUserList() {
-        ArrayList<Account> result = new ArrayList<Account>();
+        ArrayList<Account> result = new ArrayList<>();
         for(Account a: _accounts) {
             if(a.getAccountType().equals(AccountType.USER)) {
                 result.add(a);
@@ -34,7 +34,7 @@ public class Model {
     }
 
     public static ArrayList getAdminList() {
-        ArrayList<Account> result = new ArrayList<Account>();
+        ArrayList<Account> result = new ArrayList<>();
         for(Account a: _accounts) {
             if(a.getAccountType().equals(AccountType.ADMIN)) {
                 result.add(a);

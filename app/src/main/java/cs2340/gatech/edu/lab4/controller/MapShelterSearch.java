@@ -1,7 +1,6 @@
 package cs2340.gatech.edu.lab4.controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cs2340.gatech.edu.lab4.R;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
-import cs2340.gatech.edu.lab4.model.Shelter;
 
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_AGE;
 import static cs2340.gatech.edu.lab4.controller.ShelterListActivity.ARG_GENDER;

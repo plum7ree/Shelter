@@ -1,6 +1,6 @@
 package cs2340.gatech.edu.lab4.controller;
 
-/**
+/*
  * Created by mike on 2/22/18.
  */
 
