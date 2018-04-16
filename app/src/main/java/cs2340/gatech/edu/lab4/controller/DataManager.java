@@ -2,9 +2,6 @@ package cs2340.gatech.edu.lab4.controller;
 
 
 
-import com.google.android.gms.maps.model.LatLng;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
