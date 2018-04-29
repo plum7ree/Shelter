@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.AccountType;
 import cs2340.gatech.edu.lab4.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,11 +36,18 @@ public class LoginActivity extends AppCompatActivity {
      * @param view Current view of app
      */
     public void onLoginPressed(View view) {
-        if(Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString())) {
+        if(Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString()) == AccountType.USER) {
+
+
             Intent intent = new Intent(getBaseContext(), ShelterListActivity.class);
             intent.putExtra(ARG_USER_ID,usernameField.getText().toString());
             startActivity(intent);
-        } else {
+        }
+        else if (Model.isValidUserAndPassword(usernameField.getText().toString(),password.getText().toString()) == AccountType.ADMIN){
+            Intent intent = new Intent(getBaseContext(), AdminModeActivity.class);
+            startActivity(intent);
+        }
+        else {
             Snackbar.make(view, "Invalid username or password. Please try again.", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }

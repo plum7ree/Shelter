@@ -9,9 +9,11 @@ import java.util.List;
 
 public class Account {
 
+    private int key;
     private String username;
     private String password;
     AccountType type;
+    private boolean isBanned = false;
     private boolean hasReservation = false;
 
     /**
@@ -20,13 +22,17 @@ public class Account {
      * @param pass password
      * @param t USER or ADMIN account type
      */
-    public Account(String user, String pass, AccountType t) {
+    public Account(int k, String user, String pass, AccountType t, boolean ban) {
+        key = k;
         username = user;
         password = pass;
         type = t;
+        isBanned = ban;
     }
     public static List<AccountType> legalAccountTypes = Arrays.asList(AccountType.USER,AccountType.ADMIN);
 
+
+    public int getKey() {return key;}
     /**
      * getter for username
      * @return username of Account
@@ -53,12 +59,14 @@ public class Account {
         return type;
     }
 
+    public boolean getBanState() {return isBanned; }
+
     /**
      * toString for Account
      * @return string representation of the account
      */
     public String toString() {
-        return username + " " + password + " " + type;
+        return username ;
     }
 
     /**
@@ -66,7 +74,7 @@ public class Account {
      * @param has boolean status of reservation
      */
     public void setHasReservation(Boolean has) {hasReservation = has;}
-
+    public void setBanState(boolean ban) {isBanned = ban;}
     /**
      * equals override for accounts, checks if username is equivalent
      * @param o Object that is cast into an Account

@@ -1,20 +1,11 @@
 package cs2340.gatech.edu.lab4.controller;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cs2340.gatech.edu.lab4.R;
+import cs2340.gatech.edu.lab4.model.Account;
 import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Age;
 import cs2340.gatech.edu.lab4.model.SearchCategory.Gender;
@@ -26,6 +17,7 @@ import cs2340.gatech.edu.lab4.model.Shelter;
 public class SearchController {
 
     private static ArrayList<Shelter> _searchResult = new ArrayList<>(Model.getShelters());;
+    private static ArrayList<Account> _userResult = new ArrayList<>(Model.getUserList());
 
     public static SearchController getInstance() { return _instance; }
     private static SearchController _instance = new SearchController();
@@ -40,6 +32,9 @@ public class SearchController {
      * @return the result of a search
      */
     public ArrayList<Shelter> getSearchResult() { return _searchResult; }
+    public ArrayList<Account> getUserResult() {return _userResult;}
+
+
     /**
      * search that filters by shelter name, age required, and gender restrictions
      * @param g gender restriction user needs

@@ -34,7 +34,7 @@ public class Model {
     public static ArrayList getUserList() {
         ArrayList<Account> result = new ArrayList<Account>();
         for(Account a: _accounts) {
-            if(a.getAccountType().equals(AccountType.USER)) {
+            if(a.getAccountType() ==AccountType.USER) {
                 result.add(a);
             }
         }
@@ -71,10 +71,12 @@ public class Model {
      * @param type  admin or user account type
      */
     public static void addNewAccount(String user, String pass, AccountType type) {
-        _accounts.add(new Account(user,pass,type));
+        boolean isBanned = false;
         updateNumAccounts();
-        String id = String.valueOf(_numAccounts - 1);
-        FirebaseController.postAccount(id,user,pass,type);
+        int id = _numAccounts - 1;
+        Account account = new  Account(id, user,pass,type, isBanned);
+        _accounts.add(account);
+        FirebaseController.postAccount(account);
 
     }
 
@@ -84,17 +86,24 @@ public class Model {
      * @param password password
      * @return
      */
-    public static boolean isValidUserAndPassword(String user, String password) {
+    public static AccountType isValidUserAndPassword(String user, String password) {
         user = user.replaceAll("\\s", "");
         for (Object a : getAccountList()) {
-                System.out.println("account from array" + a);
-                if(((Account)a).getUsername().equals(user)
-                        && ((Account)a).getPassword().equals(password)) { return true;}
+            System.out.println("account from array" + a);
+            if(((Account)a).getUsername().equals(user)
+                    && ((Account)a).getPassword().equals(password)) {
+                if (((Account) a).getBanState()) {
+                    return null;
+                }
+                return ((Account) a).getAccountType();
+            }
 
 
         }
-        return false;
+        return null;
     }
+
+
 
     /**
      * Add new shelter with information in parameters
@@ -154,11 +163,12 @@ public class Model {
      */
     public static void updateBedsAvailable(Shelter currentShelter) {
         for (Shelter shelter:_shelters
-             ) {
+                ) {
             System.out.println("Shelter Name:" + shelter.getName() + " Beds Available: " + shelter.getAvailableBeds());
 
         }
     }
+
 
     /**
      * Getter for shelter list
@@ -219,4 +229,16 @@ public class Model {
     }
 
 
+    public static void  updateBanState(String name, boolean ban) {
+        for (int i = 0; i < _accounts.size(); i++) {
+            if (_accounts.get(i).getUsername() == name) {
+                Account user = _accounts.get(i);
+                user.setBanState(ban);
+                _accounts.set(i, user);
+                controller.updateBanState(user, ban);
+            }
+        }
+    }
+
 }
+

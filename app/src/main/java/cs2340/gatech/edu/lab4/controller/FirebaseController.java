@@ -10,7 +10,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import cs2340.gatech.edu.lab4.model.Account;
-import cs2340.gatech.edu.lab4.model.AccountType;
 import cs2340.gatech.edu.lab4.model.Model;
 import cs2340.gatech.edu.lab4.model.Shelter;
 
@@ -23,6 +22,7 @@ public class FirebaseController {
     private static final FirebaseController _instance = new FirebaseController();
     static FirebaseDatabase database;
     static DatabaseReference myRef;
+    private static String accountFolderName = "account_test";
 
     /**
      * Creates instance of firebase controller
@@ -39,21 +39,21 @@ public class FirebaseController {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                long numAccounts = dataSnapshot.child("accounts").getChildrenCount();
+                long numAccounts = dataSnapshot.child(accountFolderName).getChildrenCount();
                 RegisterActivity reg = new RegisterActivity();
                 if (numAccounts != 0) {
                     for (int i = 0; i < numAccounts; i++) {
                         if (dataSnapshot.child("accounts/" + i + "/accountType").getValue() != null) {
-                            String type = dataSnapshot.child("accounts/" + i + "/accountType").getValue().toString();
-                            String aStr = dataSnapshot.child("accounts/" + i).getValue().toString();
+                            String type = dataSnapshot.child(accountFolderName+ "/" + i + "/accountType").getValue().toString();
+                            String aStr = dataSnapshot.child(accountFolderName+ "/" + i).getValue().toString();
                             Gson g = new Gson();
-                                Account a = g.fromJson(aStr, Account.class);
-                                if (!reg.isUserExists(a.getUsername())) {
-                                    Model.getAccountsFromDatabase(a);
-                                }
+                            Account a = g.fromJson(aStr, Account.class);
+                            if (!reg.isUserExists(a.getUsername())) {
+                                Model.getAccountsFromDatabase(a);
                             }
                         }
                     }
+                }
 
                 long numShelters = dataSnapshot.child("shelters").getChildrenCount();
                 if (numShelters != 0) {
@@ -77,16 +77,9 @@ public class FirebaseController {
         });
     }
 
-    /**
-     * Pushes new account with info from parameters into database
-     * @param id
-     * @param username
-     * @param password
-     * @param type
-     */
-    public static void postAccount(String id, String username, String password, AccountType type) {
-        Account a = new Account(username,password,type);
-        myRef.child("accounts/" + id).setValue(a);
+
+    public static void postAccount(Account a) {
+        myRef.child(accountFolderName+ "/" + a.getKey()).setValue(a);
 
     }
 
@@ -102,6 +95,12 @@ public class FirebaseController {
         myRef.child("shelters/" + key + "/availableBeds").setValue(availableBeds);
 
     }
+
+    public static void updateBanState(Account user, boolean ban) {
+        myRef.child(accountFolderName+ "/" + user.getKey() + "/isBanned").setValue(ban);
+    }
+
+
 
     /**
      * Pushes updates from database into Model when changed
@@ -133,3 +132,4 @@ public class FirebaseController {
     }
 
 }
+
